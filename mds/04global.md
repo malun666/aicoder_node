@@ -167,7 +167,50 @@ console.timeEnd('lb1');
 console的方法还比较多，这里就不一一列举了，有兴趣的可以直接参考[中文文档](http://nodejs.cn/api/console.html)
 
 
-待续....
+### 定时器
+
+node提供了全局的3个设置定时器方法：
+* `setImmediate(callback[, ...args])`
+* `setInterval(callback, delay[, ...args])`
+* `setTimeout(callback, delay[, ...args])`
+
+另外对应3个取消定时器的方法
+* `clearImmediate(immediate)`
+* `clearInterval(timeout)`
+* `clearTimeout(timeout)`
+
+三个方法，使用上基本都表现一致，这里只说一种情况，其他类比。
+
+```
+参数说明：
+  callback <Function> 当定时器到点时要调用的函数。
+  delay <number> 调用 callback 之前要等待的毫秒数。
+  ...args <any> 当调用 callback 时要传入的可选参数。
+```
+
+```js
+var timer = setTimeout(()=>{
+  console.log(123);
+}, 100);
+
+// .... js代码
+
+clearTimeout(timer);
+
+```
+
+> callback 可能不会精确地在 delay 毫秒被调用。 Node.js 不能保证回调被触发的确切时间，也不能保证它们的顺序。 回调会在尽可能接近所指定的时间上调用。
+> 注意：当 delay 大于 2147483647 或小于 1 时，delay 会被设为 1。
+
+### 其他全局变量
+
+另外全局还提供了 `Buffer`、模块相关变量、`process`等全局变量。
+
+这些内容，等我们后续章节再详细介绍。
+
+到此为止，您如果熟悉前端开发的话，这不就是前端js移到了nodejs上执行了吗？的确如此，但是这运行的环境已经脱离了浏览器，是直接运行在操作系统之上了。
+
+那么nodejs背后是怎样运行的？模块机制是怎么搞到的？且看下回再解。
 
 
 ---
