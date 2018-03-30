@@ -39,5 +39,10 @@ $ npm -v
 ```
 
 ---
+参考：
+https://nodejs.org/en/download/package-manager/
+https://nodejs.org/
 
+---
+[老马免费视频教程](https://qtxh.ke.qq.com)
 [返回首页](../readme.md)
