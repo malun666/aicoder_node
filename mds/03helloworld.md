@@ -1,5 +1,7 @@
 # 第一个 Nodejs 程序
 
+## 第一步：创建项目文件夹
+
 首先创建 demos 文件夹。然后在此文件夹下创建`01_hello.js`文件
 
 ```shell
@@ -8,6 +10,8 @@ $ mkdir demos && cd demos
 $ touch 01_hello.js
 ```
 
+## 第二步：编写 nodejs 的第一个程序文件
+
 然后用编辑器（推荐使用：vscode 或者 sublime）打开文件：`01_hello.js`，并添加代码如下：
 
 ```js
@@ -15,6 +19,8 @@ console.log('Hi, aicoder.com! Hello, world!');
 ```
 
 保存文件，并用 node 执行此 js 文件。
+
+## 第三步：编译和运行 JS 文件
 
 打开系统的命令行工具（mac|linux 为终端，windows 下为 cmd 或 powershell），用 cd 命令进入 demos 文件夹。运行编译和执行 js 文件的命令：
 
