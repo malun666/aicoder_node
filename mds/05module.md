@@ -207,7 +207,7 @@ CMD推崇的是：依赖就近依赖，AMD则默认约束模块一开始就声�
 1. [NodeJs 官网文档](https://nodejs.org/)   
 1. [MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects)
 1. [Javascript模块化编程（二）：AMD规范](http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html)
-1.[Javascript模块化编程（三）：require.js的用法](http://www.ruanyifeng.com/blog/2012/11/require_js.html)
+1. [Javascript模块化编程（三）：require.js的用法](http://www.ruanyifeng.com/blog/2012/11/require_js.html)
 1. [CMD 模块定义规范](https://www.cnblogs.com/jiangxiaobo/p/5587234.html)
 
 ---
