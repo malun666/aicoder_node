@@ -156,7 +156,7 @@ console.timeEnd('lb1');
 5. 其他方法
 
 说明|实例
----|————
+---|---
 打印堆栈跟踪在代码 | `console.trace([message][, ...args])`
 计数器的显示标签|`console.count([label])` 
 重置指定 label 的内部计数器。|`console.countReset([label='default'])`
