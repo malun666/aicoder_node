@@ -1,6 +1,6 @@
 # 第一个 Nodejs 程序
 
-首先创建 demos 文件夹。 然后在此文件夹下创建`01_hello.js`文件
+首先创建 demos 文件夹。然后在此文件夹下创建`01_hello.js`文件
 
 ```shell
 # 以下是linux/mac下使用终端用命令行创建文件，windows下请直接用资源管理可视化鼠标操作
