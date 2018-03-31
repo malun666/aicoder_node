@@ -4,3 +4,5 @@ console.dir(a, {
   colors: true,
   showHidden: true
 });
+
+console.log(module.paths);
