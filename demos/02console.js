@@ -5,4 +5,4 @@ console.dir(a, {
   showHidden: true
 });
 
-console.log(module.paths);
+console.log(module);

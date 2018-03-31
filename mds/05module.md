@@ -378,6 +378,29 @@ NODE_MODULES_PATHS(START)
 
 ## module 对象
 
+如果想查看当前模块，可以直接使用console直接打印一下module对象。
+
+```js
+console.dir(module);
+// 打印结果：
+Module {
+  id: '.',
+  exports: {},
+  parent: null,
+  filename: '/Users/flydragon/Desktop/work/gitdata/nodedemos/demos/02console.js',
+  loaded: false,
+  children: [],
+  paths:
+   [ '/Users/flydragon/Desktop/work/gitdata/nodedemos/demos/node_modules',
+     '/Users/flydragon/Desktop/work/gitdata/nodedemos/node_modules',
+     '/Users/flydragon/Desktop/work/gitdata/node_modules',
+     '/Users/flydragon/Desktop/work/node_modules',
+     '/Users/flydragon/Desktop/node_modules',
+     '/Users/flydragon/node_modules',
+     '/Users/node_modules',
+     '/node_modules' ] }
+```
+
 在每个模块中，module 的自由变量是一个指向表示当前模块的对象的引用。 为了方便，module.exports 也可以通过全局模块的 exports 对象访问。
 
 module.exports 与 exports区别，看Node中的源码就知道了。

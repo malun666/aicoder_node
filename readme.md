@@ -18,4 +18,6 @@
 
 * [第四章：global 全局变量](./mds/04global.md)
 
-* [第五章：模块化](./mds/05module.md)
+* [第五章：模块化(上)模块化演进](./mds/05module.md)
+
+* [第五章：模块化(下)node 的包管理 npm 与 yarn](./mds/06npm.md)
