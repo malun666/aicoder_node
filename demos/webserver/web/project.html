@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta id=viewport name=viewport content="width=device-width, initial-scale=1.0"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=description content=AICODER专注于服务IT行业人员岗前实习,大学生实习,前端项目实习,全栈项目实习,python实习,java实习，net实习,真实项目实战><meta name=keywords content=实习,大学生,前端,全栈,项目实习,前端实习><meta name=robots content=index,follow><meta name=application-name content=AICODER.com><link rel=stylesheet href=./lib/bootstrap/css/bootstrap.min.css><link rel=stylesheet href=./lib/bootstrap/css/bootstrap-theme.min.css><link rel=stylesheet href=./lib/animate.css><link rel=stylesheet href=./font/iconfont.css><link rel=stylesheet href=./css/common-2ae66b73d5.css><link rel=stylesheet href=./css/project-5fd7d6466c.css><script src=./lib/template-web.js></script><title>AICODER-大学生IT实习基地,线上IT课程免费自学,线下真实企业实习实战。</title></head><body><header class="navbar navbar-inverse navbar-fixed-top"><div class=container><div class=navbar-header><a class=navbar-brand href=http://AICODER.com><img alt=AICODER src=./img/inverse.png class=logo-img></a><h1 class=fl>AICODER</h1></div><div class="collapse container-fluid navbar-collapse" id=bs-example-navbar-collapse-1><ul class="nav navbar-nav" id=tp_nav><li class=n-btn data-menuanchors=floor_hd><a href="/">首页 <span class=sr-only>(current)</span></a></li><li><a href=http://qtxh.ke.qq.com target=_blank>线上免费</a></li><li class="n-btn active" data-menuanchors=floor_xmsz><a href=#floor_xmsz>实战项目</a></li><li class="visible-lg-inline-block visible-md-inline-block n-btn" data-menuanchors=floor_bmlc><a href=#floor_bmlc>报名流程</a></li><li class="visible-lg-block n-btn"><a href=https://www.jianshu.com/p/760d903e482d target=_blank>后付费</a></li><li class="visible-lg-block n-btn"><a href=https://www.jianshu.com/p/760d903e482d target=_blank>不8000就业不还款</a></li><li class=visible-lg-inline-block><a target=_blank href=http://qtxh.ke.qq.com>腾讯课堂</a></li></ul></div></div></header><div class=main-container><div class=tmpl-wrap><script id=tmpl type=text/html><% for(var row = 0; row < $data.p.length; row++) { %> <div class="container-fluid {{ $data.p[row].pre }} p-wrap <%= row % 2 == 0 ? '' : 'jumbotron'%>"> <h3>{{$data.p[row].title}}</h3> <p> {{$data.p[row].subtitle}} </p> <hr> <div class="swiper-container" id="{{ $data.p[row].pre }}"> <% for(var i = 1; i <= p[row].count; i++){ %> <div class="swiper-wrapper"> <div class="swiper-slide col-sm-3 col-xs-6" amt="animated slideInLeft"> <img width="100%" class="lazy" src="./img/wx.png" data-src="./img/pimgs/<%= $data.p[row].pre + i + $data.p[row].ext%>" alt="{{$data.p[row].title}}"> </div> <% if(i % 4 == 0) {%> <div class="clearfix"></div> <% } %> </div> <% } %> </div> </div> </div> <% }%></script></div><div class=jumbotron><div class=container id=floor_bmlc><h3>报名流程</h3><div class=container><p>微信：一步直达,逆袭成功，只需扫一扫。</p><div class=img-wrap amt="animated zoomIn animate-delay-1"><img class="hover-big lazy" src=./img/load2.gif data-src=./img/wx.png alt=AICODER微信></div></div><div class=section-more><a target=_blank href="http://wpa.qq.com/msgrd?v=3&uin=515154084&site=qq&menu=yes" class="btn btn-warning" alt=在线咨询 title=在线咨询>在线咨询</a></div></div></div></div><div class=fix-right><a target=_blank href="http://wpa.qq.com/msgrd?v=3&uin=515154084&site=qq&menu=yes"><img border=0 src="http://wpa.qq.com/pa?p=2:515154084:53" alt=在线咨询 title=在线咨询></a></div><script type=text/javascript>
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1259821522'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol +
+      "s95.cnzz.com/z_stat.php%3Fid%3D1259821522%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+
+  </script><script src=https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js></script><script src=./lib/lazyload.js></script><script src=./lib/bootstrap/js/bootstrap.min.js></script><script>
+    var data = {
+      loaderUrl: './img/load2.gif',
+      p: [{
+        pre: 'a',
+        ext: '.jpg',
+        title: 'AICODER移动端商城',
+        subtitle: '移动商城项目，包括用户注册、登录、我的商城、我的收入、订单管理、消息模块等',
+        count: 8,
+      }, {
+        pre: 'b',
+        ext: '.jpg',
+        title: 'AICODER在线教育系统',
+        subtitle: '针对大学生的在线教育平台，包括教师端、学生端、后台管理等模块。',
+        count: 8,
+      }, {
+        pre: 'c',
+        ext: '.jpg',
+        title: 'AICODER房装帮帮移动Web',
+        subtitle: '针对新房和二手房装修服务，主要为装修公司、装修业主提供装修报价、装修服务等。',
+        count: 8,
+      }, {
+        pre: 'd',
+        ext: '.jpg',
+        title: 'AICODER出境游',
+        subtitle: '专注于出境游，提供出境游服务、签证办理服务、旅游攻略等',
+        count: 4,
+      }, {
+        pre: 'f',
+        ext: '.jpg',
+        title: 'AICODER电商后台管理',
+        subtitle: '电商商家后台管理系统，包括：后台商品管理，店铺管理，发货管理，订单管理，消息管理等',
+        count: 8,
+      }, {
+        pre: 'g',
+        ext: '.jpg',
+        title: 'AICODER外贸电商系统',
+        subtitle: '电商商家后台管理系统，包括：后台商品管理，店铺管理，发货管理，订单管理，消息管理等',
+        count: 8,
+      }, {
+        pre: 'h',
+        ext: '.jpg',
+        title: 'AICODER材料与结算流系统',
+        subtitle: '包括：运单信息模块，选材模块，退补货模块，领主等模块',
+        count: 8,
+      }, {
+        pre: 'i',
+        ext: '.jpg',
+        title: 'AICODER账务管理系统',
+        subtitle: '包括：部门管理，财务管理，客户管理，数据分析，用户管理等模块',
+        count: 8,
+      }, {
+        pre: 'j',
+        ext: '.jpg',
+        title: 'AICODER线下实习，实力见证未来',
+        subtitle: '20多个企业真实项目可以供选择，团队合作模式，真切体验前端开发的工作，规范的文档，专业的设计图，大公司开发模式',
+        count: 8,
+      }, {
+        pre: 'k',
+        ext: '.jpg',
+        title: '高大上的办公环境，办公氛围好',
+        subtitle: '赶紧明亮的办公环境，真实的企业开发项目，助你一步逆袭成功！',
+        count: 8,
+      }]
+    };
+    $(function () {
+      initTemp();
+      $('img.lazy').lazyload();
+      // initSwipter();
+    });
+
+    function initSwipter() {
+      for (var i in data.p) {
+        var rowId = '#' + data.p[i].pre;
+        console.log(rowId)
+        var mySwiper = new Swiper(rowId, {
+          // direction: '',
+          loop: true,
+          // 如果需要分页器
+          pagination: {
+            el: rowId + '.swiper-pagination'
+          },
+          // 如果需要前进后退按钮
+          navigation: {
+            nextEl: rowId + '.swiper-button-next',
+            prevEl: rowId + '.swiper-button-prev',
+          },
+
+          // 如果需要滚动条
+          scrollbar: {
+            el: rowId + '.swiper-scrollbar',
+          },
+          lazy: {
+            loadPrevNext: true,
+          },
+        })
+      }
+    }
+
+    function initTemp() {
+      var html = template('tmpl', data);
+      $('.tmpl-wrap').html(html);
+      setTimeout(function () {
+        $('img.lazy').lazyload();
+      }, 10);
+    }
+
+  </script></body></html>
