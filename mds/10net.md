@@ -153,7 +153,7 @@ const client = net.createConnection(60003, '127.0.0.1', () => {
 
 如果您已经了解了HTTP协议的话，而且已经掌握如何做TCP的发送数据和接受处理数据，再有您稍微掌握一点字符串处理的技巧，那么您就很容易做一个简单的静态web服务器出啦。当然这里是说用底层的API，不是用http模块。
 
-限于篇幅，在此不再赘述，请直接看我的github源码，仅仅是demo，不要用于生产环境中。
+限于篇幅，在此不再赘述，请直接看我的[github源码](https://github.com/malun666/aicoder_node/tree/master/demos/webserver)，仅仅是demo，不要用于生产环境中。
 
 ## 总结
 
