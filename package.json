@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts": {}
+  "scripts": {},
+  "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "eslit": "^5.0.0"
+  }
 }

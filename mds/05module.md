@@ -70,10 +70,8 @@ module.star = 1;
 
   ```js
   // laoma.core.js
-  (function(w, d1, d2) {
-    // 判断laoma框架是否存在，不存在初始化一下。
-    if (!w.laoma) w.laoma = {};
-    w.laoma.Btn = {
+  (function(laoma, d1, d2) {
+    laoma.Btn = {
       getVal: function() {
         console.log('val');
       },
@@ -81,26 +79,30 @@ module.star = 1;
         console.log('setvale');
       }
     };
-  })(window || {}, depend1, depend2);
+  })(window.laoma || {}, depend1, depend2);
 
   // laoma.animate.js
   // 动画组件
-  (function(w, d1, d2) {
-    if (!w.laoma) {
-      w.laoma = {};
-    }
-    w.laoma.animate = {};
-  })(window || {}, depend1, depend2);
+  (function(laoma, d1, d2) {
+    laoma.animate = {};
+  })(window.laoma || {}, depend1, depend2);
 
   // laoma.form.js
   // 表单组件
-  (function(w, d1, d2) {
-    if (!w.laoma) {
-      w.laoma = {};
-    }
-    w.laoma.form = {};
-  })(window || {}, depend1, depend2);
+  (function(laoma, d1, d2) {
+    laoma.form = {};
+  })(window.laoma || {}, depend1, depend2);
   ```
+
+- 围观jQuery的结构
+
+```js
+(function(window, undefined) {
+    var jQuery = function() {}
+    // ...
+    window.jQuery = window.$ = jQuery;
+})(window);
+```
 
 后续的演变就是，出现了 AMD、CMD、CommonJS 等模块化标准，然后前端模块化进入大爆发时代。
 
