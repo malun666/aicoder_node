@@ -19,7 +19,7 @@
 * [第六章：path 模块详解](./mds/07path.md)
 * [第七章：文件处理](./mds/08file.md)
 * [第八章：事件处理](./mds/09event.md)
-
 * [第九章：网络模块](./mds/10net.md)
+* [第十章：HTTP模块](./mds/11http.md)
 
 * 待续...
