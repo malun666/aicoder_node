@@ -38,8 +38,7 @@
 `request.getHeader(name)`|①name ②返回字符串 |读出请求头，注意:参数name是大小写敏感的
 `request.removeHeader(name)`|name 字符串|移除一个已经在 headers 对象里面的 header。
 `request.setHeader(name, value)`|①name是header的key②value|为 headers 对象设置一个单一的 header 值。如果该 header 已经存在了，则将会被替换。这里使用一个字符串数组来设置有相同名称的多个 headers。
-`request.setSocketKeepAlive([enable][, initialDelay])`|①enable类型boolean②initialDelay|
-一旦 socket 被分配给请求且已连接，socket.setKeepAlive() 会被调用。
+`request.setSocketKeepAlive([enable][, initialDelay])`|①enable类型boolean②initialDelay|一旦 socket 被分配给请求且已连接，socket.setKeepAlive() 会被调用。
 `request.setTimeout(timeout[, callback])`|①timeout请求被认为是超时的毫秒数。②callback 可选的函数,当超时发生时被调用。|等同于绑定到 timeout 事件。一旦socket被分配给请求且已连接，socket.setTimeout() 会被调用。
 `request.write(chunk[, encoding][, callback])`|①chunk发送的请求数据。②encoding：编码；③callback回调函数|发送请求主体的一个数据块。 通过多次调用该方法，一个请求主体可被发送到一个服务器，在这种情况下，当创建请求时，建议使用 ['Transfer-Encoding', 'chunked'] 请求头。
 
@@ -250,13 +249,13 @@ http
 
 ### http.ServerResponse返回客户端信息
 
-决定了用户最终能到的结果，它是由http.Server的request事件发送的，作为第二个参数传递。一般为response或res 
+`http.ServerResponse`这个类实现了（而不是继承自）可写流 接口。继承了`EventEmitter`。它用来给用户发送响应结果，它是由`http.Server`的`request`事件发送的，作为第二个参数传递。一般为response或res 
 主要的三个函数： 
-`response.writeHead(statusCode,[headers])`：向请求的客户端发送响应头。 
-`statusCode`是HTTP的状态码，如200为成功，404未找到等。 
-`headers`是一个类似关联数组的对象，表示响应头的每个属性。 
-`response.write(data,[encoding])` 向请求客户端发送相应内容，data是buffer或字符串，encoding为编码 
-`response.end([data],[encoding])` 结束响应，告知用户所有发送已经完成，当所有要返回的内容发送完毕，该函数必须被调用一次，如果不调用，客户端永远处于等待状态
++ `response.writeHead(statusCode,[headers])`：向请求的客户端发送响应头。 
+  - `statusCode`是HTTP的状态码，如200为成功，404未找到等。 
+  - `headers`是一个类似关联数组的对象，表示响应头的每个属性。 
++ `response.write(data,[encoding])` 向请求客户端发送相应内容，data是buffer或字符串，encoding为编码 
++ `response.end([data],[encoding])` 结束响应，告知用户所有发送已经完成，当所有要返回的内容发送完毕，该函数必须被调用一次，如果不调用，客户端永远处于等待状态
 
 
 ## 总结
