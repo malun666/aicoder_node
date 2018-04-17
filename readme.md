@@ -21,5 +21,6 @@
 * [第八章：事件处理](./mds/09event.md)
 * [第九章：网络模块](./mds/10net.md)
 * [第十章：HTTP模块](./mds/11http.md)
+* [第十一章：其他](./mds/12other.md)
 
 * 待续...
