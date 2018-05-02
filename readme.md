@@ -2,6 +2,9 @@
 
 [aicoder.com](http://aicoder.com) 线下实习： 不 8000 就业，不还实习费。
 
+在线视频地址： 
+http://ke.qq.com/course/294595
+
 如果需要转载本文档，请联系老马，Q： 515154084
 
 ## JS 基础教程
