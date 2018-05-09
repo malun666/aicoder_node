@@ -8,5 +8,9 @@
     "babel-eslint": "^8.2.2",
     "eslit": "^5.0.0",
     "should": "^13.2.1"
+  },
+  "dependencies": {
+    "connect": "^3.6.6",
+    "npm": "^6.0.0"
   }
 }
