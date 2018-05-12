@@ -11,6 +11,21 @@ function _save(db) {
   });
 }
 
+exports.getUserById = function (id) {
+  if (typeof (id) !== 'number' || id < 0) {
+    return {
+      status: 0,
+      msg: '参数不符合规范。'
+    }
+  }
+
+  return {
+    user: jsondata.users.find(a => a.id === id),
+    status: 1,
+    msg: 'ok'
+  };
+}
+
 // 获取所有的用户数据
 exports.getUsers = function () {
   return jsondata.users || [];
@@ -53,9 +68,11 @@ exports.delUser = function (id) {
   if (jsondata.users && jsondata.users.length > 0) {
     let index = jsondata.users.findIndex(item =>
       item.id === id);
-    if (index <= 0) {
+    console.log('type: %s id: %d', typeof (id), id);
+    console.log(index);
+    if (index < 0) {
       return {
-        status: 1,
+        status: 2,
         msg: '未删除任何数据。要删除的数据不存在！'
       }
     }

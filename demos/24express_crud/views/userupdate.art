@@ -22,47 +22,53 @@
 
 <body>
   <a href="/">返回主页</a>
-  <form id="frm" action="/user/add" method="POST" enctype="application/x-www-form-urlencoded">
+  <form id="frm" action="/user/update" method="POST" enctype="application/x-www-form-urlencoded">
     <table class="table is-bordered is-hoverable is-striped">
+      <tr>
+        <td>编号</td>
+        <td>{{id}}
+          <input type="hidden" name="id" value="{{id}}">
+        </td>
+      </tr>
       <tr>
         <td>用户名</td>
         <td>
-          <input required type="text" name="name" placeholder="用户名" value="aicoder">
+          <input required type="text" name="name" placeholder="用户名" value="{{name}}">
         </td>
       </tr>
       <tr>
         <td>电话</td>
         <td>
-          <input type="text" name="phone" placeholder="电话" value="189118673874">
+          <input type="text" name="phone" placeholder="电话" value="{{phone}}">
         </td>
       </tr>
       <tr>
         <td>邮箱</td>
         <td>
-          <input type="mail" name="email" placeholder="demo@demo.com" value="aicoder@aicoder.com">
+          <input type="mail" name="email" placeholder="demo@demo.com" value="{{email}}">
         </td>
       </tr>
       <tr>
         <td>地址</td>
         <td>
-          <input type="text" name="address" placeholder="北京昌平区百善镇" value="北京昌平区百善镇">
+          <input type="text" name="address" placeholder="北京昌平区百善镇" value="{{address}}">
         </td>
       </tr>
       <tr>
         <td>邮编</td>
         <td>
-          <input type="text" name="zip" placeholder="119019" value="100096">
+          <input type="text" name="zip" placeholder="119019" value="{{zip}}">
         </td>
       </tr>
       <tr>
         <td>生日</td>
         <td>
-          <input required type="date" name="birthday" placeholder="1922-1-2" value="">
+          <input required type="date" name="birthday" placeholder="1922-1-2" value="{{birthday}}">
         </td>
       </tr>
       <tr>
         <td colspan="2" class="tab-center">
-          <input type="submit" value="添加">
+          <input type="submit" value="修改">
           <input type="reset" value="清空">
         </td>
       </tr>

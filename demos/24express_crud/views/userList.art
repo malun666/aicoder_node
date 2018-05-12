@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://cdn.bootcss.com/bulma/0.7.1/css/bulma.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
   <title>Document</title>
   <style>
     .menu {
@@ -18,47 +19,58 @@
 <body class="is-fullhd has-background-light">
   <div class="">
     <div class="section hd has-background-primary">
-    </div>
-    <div class="main level">
-      <div class="level-left menu">
-        <a href="/user/add" target="_blank">添加</a>
-      </div>
-      <div class="level-right">
-        <table class="table is-bordered is-hoverable is-striped is-fullwidth">
-          <thead>
-            <tr class="is-selected">
-              <th>编号</th>
-              <th>姓名</th>
-              <th>电话</th>
-              <th>邮箱</th>
-              <th>地址</th>
-              <th>邮编</th>
-              <th>编辑</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{each users}}
-            <tr>
-              <td>{{$value.id}}</td>
-              <td>{{$value.name}}</td>
-              <td>{{$value.phone}}</td>
-              <td>{{$value.email}}</td>
-              <td>{{$value.address}}</td>
-              <td>{{$value.zip}}</td>
-              <td>
-                <a href="javascript:0" uid="{{ $value.id }}" class="button is-primary is-small">编辑</a>
-                <a href="javascript:0" uid="{{ $value.id }}" class="button is-primary is-small">删除</a>
-              </td>
-            </tr>
-            {{/each}}
-          </tbody>
+      <a href="/user/add" target="_blank">添加</a>
 
-        </table>
-      </div>
     </div>
+    <table class="tb-data table is-bordered is-hoverable is-striped is-fullwidth">
+      <thead>
+        <tr class="is-selected">
+          <th>编号</th>
+          <th>姓名</th>
+          <th>电话</th>
+          <th>邮箱</th>
+          <th>地址</th>
+          <th>邮编</th>
+          <th>编辑</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{each users}}
+        <tr>
+          <td>{{$value.id}}</td>
+          <td>{{$value.name}}</td>
+          <td>{{$value.phone}}</td>
+          <td>{{$value.email}}</td>
+          <td>{{$value.address}}</td>
+          <td>{{$value.zip}}</td>
+          <td>
+            <a href="/user/update?id={{$value.id}}" uid="{{ $value.id }}" class="btn-edit button is-primary is-small">编辑</a>
+            <a href="javascript:0" uid="{{ $value.id }}" class="btn-del button is-primary is-small">删除</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+
+    </table>
   </div>
 
+  <script>
+    $(function () {
 
+      $('.tb-data').on('click', '.btn-del', function (e) {
+        var id = $(this).attr('uid');
+        var tr = $(this).parent().parent();
+        $.get('/user/delete?id=' + id, function (data) {
+          // console.log(data);
+          if (data && data.status === 1) {
+            tr.fadeOut('fast').remove();
+            window.location.reload();
+          }
+        })
+      });
+    });
+
+  </script>
 </body>
 
 </html>

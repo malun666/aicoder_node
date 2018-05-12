@@ -1,9 +1,9 @@
+// 初始化数据
 require('../initdb.js');
 
 const service = require('../db_service.js')
 const should = require('should');
 
-console.log('开始测试！')
 describe('db_server 测试用户数据', function () {
   describe('#getUsers 测试获取用户所有数据', function () {
     it('service.getUsers() should be Array', function () {
@@ -110,4 +110,19 @@ describe('db_server 测试用户数据', function () {
       });
     });
   });
+
+  describe('#getUserbyId', function () {
+    it('getuserbyid(id) 错误的id', function () {
+      service.getUserById(-9).should.be.eql({
+        status: 0,
+        msg: '参数不符合规范。'
+      });
+    });
+    it('getUserById(10008', function () {
+      service.getUserById(10008).should.be.containEql({
+        status: 1,
+        msg: 'ok'
+      });
+    })
+  })
 });
