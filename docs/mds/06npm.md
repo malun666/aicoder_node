@@ -1,39 +1,38 @@
-# Node的包管理器
+# Node 的包管理器
 
-JavaScript缺少包结构的定义，而[CommonJS](http://wiki.commonjs.org/wiki/CommonJS)定义了一系列的规范。而NPM的出现则是为了在CommonJS规范的基础上，实现解决包的安装卸载，依赖管理，版本管理等问题。
+JavaScript 缺少包结构的定义，而[CommonJS](http://wiki.commonjs.org/wiki/CommonJS)定义了一系列的规范。而 NPM 的出现则是为了在 CommonJS 规范的基础上，实现解决包的安装卸载，依赖管理，版本管理等问题。
 
-> CommonJS是一个致力于构建统一的JS生态系统，它可以兼容web服务器、桌面应用、命令行应用、浏览器等。它定义了各种开发的规范和API（不仅仅模块化相关的规范）
-官网的说明： a group with a goal of building up the JavaScript ecosystem for web servers, desktop and command line apps and in the browser.
+> CommonJS 是一个致力于构建统一的 JS 生态系统，它可以兼容 web 服务器、桌面应用、命令行应用、浏览器等。它定义了各种开发的规范和 API（不仅仅模块化相关的规范）
+> 官网的说明： a group with a goal of building up the JavaScript ecosystem for web servers, desktop and command line apps and in the browser.
 
-CommonJS的模块主要如下：
+CommonJS 的模块主要如下：
 
-* binary: Binary Data Objects (byte arrays and/or strings) (proposals, discussion, early implementations)
-* encodings: Encodings and character sets (proposals, discussion, early implementations)
-* io: I/O Streams (proposals, discussion)
-* fs, fs-base: Filesystem (proposals, discussion, early implementations)
-* system: System Interface (stdin, stdout, stderr, &c) (1.0, amendments proposed)
-* assert, test: Unit Testing (1.0, amendment proposals pending)
-* sockets: Socket I/O TCP/IP sockets (early proposals)
-* event-queue: Reactor Reactor/Event Queue (early proposals)
-* worker: Worker Worker (concurrent shared nothing process/thread) (proposal)
-* console: console (proposal)
-
+- binary: Binary Data Objects (byte arrays and/or strings) (proposals, discussion, early implementations)
+- encodings: Encodings and character sets (proposals, discussion, early implementations)
+- io: I/O Streams (proposals, discussion)
+- fs, fs-base: Filesystem (proposals, discussion, early implementations)
+- system: System Interface (stdin, stdout, stderr, &c) (1.0, amendments proposed)
+- assert, test: Unit Testing (1.0, amendment proposals pending)
+- sockets: Socket I/O TCP/IP sockets (early proposals)
+- event-queue: Reactor Reactor/Event Queue (early proposals)
+- worker: Worker Worker (concurrent shared nothing process/thread) (proposal)
+- console: console (proposal)
 
 ## 包结构
 
-一个符合CommonJS规范的包应该是如下这种结构：
+一个符合 CommonJS 规范的包应该是如下这种结构：
 
-* 一个package.json文件应该存在于包顶级目录下
-* 二进制文件应该包含在bin目录下。
-* JavaScript代码应该包含在lib目录下。
-* 文档应该在doc目录下。
-* 单元测试应该在test目录下。
+- 一个 package.json 文件应该存在于包顶级目录下
+- 二进制文件应该包含在 bin 目录下。
+- JavaScript 代码应该包含在 lib 目录下。
+- 文档应该在 doc 目录下。
+- 单元测试应该在 test 目录下。
 
 ### package.json 说明
 
-package.json文件就是当前项目或者包（js模块、组件）的配置文件，所有当前项目的依赖的第三方模块，当前项目的配置等都定义在package.json文件中，当前它有一定的规范，我们可以通过npm命令初始化和创建package.json文件。
+package.json 文件就是当前项目或者包（js 模块、组件）的配置文件，所有当前项目的依赖的第三方模块，当前项目的配置等都定义在 package.json 文件中，当前它有一定的规范，我们可以通过 npm 命令初始化和创建 package.json 文件。
 
-创建package.json文件步骤：
+创建 package.json 文件步骤：
 
 ```shell
 # 打开命令行，确保您已经安装好了node
@@ -57,19 +56,19 @@ npm init -y
 }
 ```
 
-package.json文件说明：
+package.json 文件说明：
 
-* name。包名，需要在NPM上是唯一的。不能带有空格。
-* description。包简介。通常会显示在一些列表中。
-* version。版本号。一个语义化的版本号（http://semver.org/ ），通常为x.y.z。
-  - x(Major): 主版本号：当你做了不兼容的 API 修改,一般一个比较完整大改版，需要修改x（一般增加1） 
+- name。包名，需要在 NPM 上是唯一的。不能带有空格。
+- description。包简介。通常会显示在一些列表中。
+- version。版本号。一个语义化的版本号（http://semver.org/ ），通常为 x.y.z。
+  - x(Major): 主版本号：当你做了不兼容的 API 修改,一般一个比较完整大改版，需要修改 x（一般增加 1）
   - y(Minor): 次版本号：当你做了向下兼容的功能性新增
   - z(Patch): 修订号：当你做了向下兼容的问题修正。
   - 其他参考[中文翻译](https://www.cnblogs.com/hunchun/p/6373336.html)
-* keywords。关键字数组。用于NPM中的分类搜索。
+- keywords。关键字数组。用于 NPM 中的分类搜索。
 
-* maintainers。包维护者的数组。数组元素是一个包含name、email、web三个属性的JSON对象。
-* contributors。包贡献者的数组。第一个就是包的作者本人。在开源社区，如果提交的patch被merge进master分支的话，就应当加上这个贡献patch的人。格式包含name和email。如：
+- maintainers。包维护者的数组。数组元素是一个包含 name、email、web 三个属性的 JSON 对象。
+- contributors。包贡献者的数组。第一个就是包的作者本人。在开源社区，如果提交的 patch 被 merge 进 master 分支的话，就应当加上这个贡献 patch 的人。格式包含 name 和 email。如：
 
   ```js
   "contributors": [{
@@ -81,12 +80,13 @@ package.json文件说明：
   }],
   ```
 
-* bugs。一个可以提交bug的URL地址。可以是邮件地址（mailto:mailxx@domain），也可以是网页地址（http://url）。
-* licenses。包所使用的许可证。
-* repositories。托管源代码的地址数组。
-* dependencies。当前包需要的依赖。这个属性十分重要，NPM会通过这个属性，帮你自动加载依赖的包。
+- bugs。一个可以提交 bug 的 URL 地址。可以是邮件地址（mailto:mailxx@domain），也可以是网页地址（http://url）。
+- licenses。包所使用的许可证。
+- repositories。托管源代码的地址数组。
+- dependencies。当前包需要的依赖。这个属性十分重要，NPM 会通过这个属性，帮你自动加载依赖的包。
 
-参考一个[express框架](https://github.com/expressjs/express/blob/master/package.json)的的包配置文件：
+参考一个[express 框架](https://github.com/expressjs/express/blob/master/package.json)的的包配置文件：
+
 ```js
 // 以下包，并不是完整的，我截取了部分内容。
 {
@@ -138,19 +138,19 @@ package.json文件说明：
 }
 ```
 
+## npm 进行包管理
 
-## npm进行包管理
+npm(node package manager)本来是 Node.js 的包管理工具，但随着 JS 这几年的蓬勃发展, npm 已经不再局限于 node 平台，尤其是 Webpack 的广泛应用，前端包管理基本由 npm 统一管理了。
 
-npm(node package manager)本来是Node.js的包管理工具，但随着JS这几年的蓬勃发展, npm已经不再局限于node平台，尤其是Webpack的广泛应用，前端包管理基本由npm统一管理了。
+npm 相关学习资源：
 
-npm相关学习资源：
-* npm[官网(https://www.npmjs.com/)
-* npm[中文文档](https://www.npmjs.com.cn/)
+- npm[官网(https://www.npmjs.com/)
+- npm[中文文档](https://www.npmjs.com.cn/)
 
-### npm安装本地包
+### npm 安装本地包
 
-安装第三方包到本地，只需要打开命令行，通过cd命令进入我们项目的根目录(确保您之前已经初始化了package.json文件)。
-然后执行npm的install命令，如下：
+安装第三方包到本地，只需要打开命令行，通过 cd 命令进入我们项目的根目录(确保您之前已经初始化了 package.json 文件)。
+然后执行 npm 的 install 命令，如下：
 
 语法：`npm install <package> --save-prod`
 
@@ -164,12 +164,13 @@ added 1 package in 1.091s  # 这里告诉我们天津一个包用了1.091秒
 ```
 
 解释：
-* `install`: 代表安装第三方包的意思，可以直接用 `i`代替。
-* `--save-prod`: 代表把当前安装包的配置写入到当前package.json文件中, 可以用 `-P`代替。
 
-我们项目文件夹会有两个变化：第一个就是增加了package.json文件和node_modeules文件夹
+- `install`: 代表安装第三方包的意思，可以直接用 `i`代替。
+- `--save-prod`: 代表把当前安装包的配置写入到当前 package.json 文件中, 可以用 `-P`代替。
 
-以下是package.json的增加的内容
+我们项目文件夹会有两个变化：第一个就是增加了 package.json 文件和 node_modeules 文件夹
+
+以下是 package.json 的增加的内容
 
 ```js
 {
@@ -189,9 +190,7 @@ added 1 package in 1.091s  # 这里告诉我们天津一个包用了1.091秒
 }
 ```
 
-
-node_modeules文件夹存放我们刚刚安装包的文件。
-
+node_modeules 文件夹存放我们刚刚安装包的文件。
 
 命令简写的形式：
 
@@ -207,17 +206,17 @@ $ npm install lodash --save
 
 ### 安装开发阶段依赖的本地包
 
-有时候我们需要一些第三方的包，仅仅在开发阶段依赖，则需要把npm的install命令添加`--save-dev`参数。
+有时候我们需要一些第三方的包，仅仅在开发阶段依赖，则需要把 npm 的 install 命令添加`--save-dev`参数。
 
-例如，我们开发阶段需要用gulp进行打包，则需要安装gulp包。
+例如，我们开发阶段需要用 gulp 进行打包，则需要安装 gulp 包。
 
 ```shell
 $ npm install gulp --save-dev
 # 以下是简写形式， -D === --save-dev
-$ npm i gulp -D 
+$ npm i gulp -D
 ```
 
-开发依赖，会在package.json文件的devDependencies下添加安装包的配置。如下所示：
+开发依赖，会在 package.json 文件的 devDependencies 下添加安装包的配置。如下所示：
 
 ```js
 {
@@ -240,28 +239,27 @@ $ npm i gulp -D
 }
 ```
 
-### 自动根据配置package.json文件下载安装依赖的包
+### 自动根据配置 package.json 文件下载安装依赖的包
 
-package.json文件可以帮我们进行包的管理和配置，如果在项目根目录下直接运行`npm install`,npm会自动的根据package.json文件中的`dependencies`和`devDependencies`中配置的第三方包进行安装。这尤其是在团队开发和项目部署时非常有用。
+package.json 文件可以帮我们进行包的管理和配置，如果在项目根目录下直接运行`npm install`,npm 会自动的根据 package.json 文件中的`dependencies`和`devDependencies`中配置的第三方包进行安装。这尤其是在团队开发和项目部署时非常有用。
 
 只需要： `npm i`
 
-package.json文件中对模块的依赖可以使用`~、^、*`来控制。
+package.json 文件中对模块的依赖可以使用`~、^、*`来控制。
 
-* `~`: 安装兼容模块新发布的补丁版本，也就是说主版本号和次版本号不能变，最后一位修改号（补丁）可变化。例如：~1.1.0 
-* `^`: （默认）主版本号不能变，后面两个版本可变，兼容模块新发布的次版本、补丁版本：^1.1.0
-* `*`: 兼容模块新发布的大版本、小版本、补丁版本：任何版本都可以。
-
+- `~`: 安装兼容模块新发布的补丁版本，也就是说主版本号和次版本号不能变，最后一位修改号（补丁）可变化。例如：~1.1.0
+- `^`: （默认）主版本号不能变，后面两个版本可变，兼容模块新发布的次版本、补丁版本：^1.1.0
+- `*`: 兼容模块新发布的大版本、小版本、补丁版本：任何版本都可以。
 
 ### 设置国内镜像
 
-npm安装的包的时候，先检查本地是否有缓存，如果最近刚安装过，而且本地有缓存的话，直接用缓存。如果没有缓存会到npm的在线仓库下载并安装。默认的仓库地址：https://registry.npmjs.org/.  
+npm 安装的包的时候，先检查本地是否有缓存，如果最近刚安装过，而且本地有缓存的话，直接用缓存。如果没有缓存会到 npm 的在线仓库下载并安装。默认的仓库地址：https://registry.npmjs.org/.
 
-但是由于服务器在国外，而且国内你懂得，有时候下载比较大点的第三方包会非常慢，而且经常断掉。建议使用国内比较稳定快速的镜像，比如淘宝的npm镜像。
+但是由于服务器在国外，而且国内你懂得，有时候下载比较大点的第三方包会非常慢，而且经常断掉。建议使用国内比较稳定快速的镜像，比如淘宝的 npm 镜像。
 
-设置npm下载包的镜像为淘宝的镜像，设置方式：
+设置 npm 下载包的镜像为淘宝的镜像，设置方式：
 
-打开终端(windows下请使用powershell)
+打开终端(windows 下请使用 powershell)
 
 ```shell
 # 设置淘宝镜像
@@ -273,7 +271,7 @@ $ npm config get registry
 https://registry.npm.taobao.org/
 ```
 
-另外一种办法：用cnpm替代npm。
+另外一种办法：用 cnpm 替代 npm。
 
 ```shell
 # 首先安装cnpm：
@@ -285,7 +283,7 @@ $ cnpm install expresstall express
 
 ### 控制安装的版本号
 
-我们通过npm安装第三方包的时候，可以指定安装的具体版本，在包的后面添加一个@符号和具体版本号就可以了。
+我们通过 npm 安装第三方包的时候，可以指定安装的具体版本，在包的后面添加一个@符号和具体版本号就可以了。
 
 ```shell
 # 安装0.1.1版本的sax
@@ -297,14 +295,11 @@ $ npm install sax@latest
 $ npm install sax@">=0.1.0 <0.2.0"
 ```
 
-
-
-
 ### 安装全局依赖的包
 
 有些包不仅仅需要我们本地开发运行时依赖，有时候也需要我们在命令行的任意位子启动和使用第三方包，那么就需要进行全局安装。
 语法： `npm install -g <package>`
-比如，gulp我们有时候在任何一点地方都可能用到gulp命令工具，则需要全局安装gulp。
+比如，gulp 我们有时候在任何一点地方都可能用到 gulp 命令工具，则需要全局安装 gulp。
 
 ```shell
 $ npm install gulp --global
@@ -314,7 +309,6 @@ $ npm i -g gulp
 # 安装成功后，我们就可以随时随地都可以运行gulp命令了
 $ gulp -v
 ```
-
 
 ### 更新安装包
 
@@ -341,17 +335,18 @@ $ npm un -P lodash
 $ npm uninstall -g lodash
 ```
 
-### 其他npm常用命令
+### 其他 npm 常用命令
 
-更新升级npm
+更新升级 npm
+
 ```shell
-$ npm i npm 
+$ npm i npm
 ```
 
 罗列出当前安装的所有的包
 
 ```shell
-$ npm list 
+$ npm list
 
 # 控制列出所有包的目录层级 --depth 控制层级
 $ npm list --depth=0
@@ -391,23 +386,24 @@ $ npm -g list --depth=0
 └── yo@1.8.5
 ```
 
-### npm后续
+### npm 后续
 
-* 发布npm包
+- 发布 npm 包
 
-npm不仅仅可以帮助我们进行安装第三包，我们也可以自己发布一个包，供全世界的开发人员使用。
+npm 不仅仅可以帮助我们进行安装第三包，我们也可以自己发布一个包，供全世界的开发人员使用。
 这块内容可以，查看官网的[npm publish](https://www.npmjs.com.cn/getting-started/publishing-npm-packages/)部分。
 
-* npm scripts 使用
+- npm scripts 使用
 
-我们可以通过npm编写一些使用频率非常高的：打包、运行测试、运行部署等shell命令到package.json文件的 scripts配置节点，方便我们执行一些复杂的重复性很高的任务。
+我们可以通过 npm 编写一些使用频率非常高的：打包、运行测试、运行部署等 shell 命令到 package.json 文件的 scripts 配置节点，方便我们执行一些复杂的重复性很高的任务。
 具体学习：请移步[阮一峰老师的教程](http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html)。
 
 以下只是简单介绍一下原理和使用：
 
-npm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。
+npm 脚本的原理非常简单。每当执行 npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。
 
 比如：
+
 ```js
 // package.json文件
 {
@@ -418,7 +414,7 @@ npm 脚本的原理非常简单。每当执行npm run，就会自动新建一个
 }
 ```
 
-在scripts中定义的脚本，我们可以直接通过`npm run  <keyname>`运行，跟在shell中运行一样。
+在 scripts 中定义的脚本，我们可以直接通过`npm run <keyname>`运行，跟在 shell 中运行一样。
 
 常见的一般使用技巧：
 
@@ -450,34 +446,34 @@ npm stop  # => npm run stop的简写
 npm test  # => npm run test的简写
 ```
 
+## yarn 是 npm 之外的另一种选择
 
-## yarn 是npm之外的另一种选择
+yarn 是 Facebook 出的一款替代 npm 的包管理工具，npm 的功能它都有对应，而且使用方法也都很相似。那为什么 Facebook 再造一个重复的轮子呢？
 
-yarn是Facebook出的一款替代npm的包管理工具，npm的功能它都有对应，而且使用方法也都很相似。那为什么Facebook再造一个重复的轮子呢？
+在 yarn 之前的 npm 版本的问题：(当然部分问题已经修复)
 
-在yarn之前的npm版本的问题：(当然部分问题已经修复)
-* npm 安装包（packages）的速度不够快，是顺序下载，不是并行。
-* 拉取的 packages 可能版本不同（最新的版本已经可以把版本锁住：package-lock.json）
-* npm 允许在安装 packages 时执行代码，这就埋下了安全隐患
+- npm 安装包（packages）的速度不够快，是顺序下载，不是并行。
+- 拉取的 packages 可能版本不同（最新的版本已经可以把版本锁住：package-lock.json）
+- npm 允许在安装 packages 时执行代码，这就埋下了安全隐患
 
-yarn能兼容npm的配置文件package.json，使用方式也非常接近npm，所以我们可以基本上无缝从npm迁移到yarn。而且yarn的确的确够快、够稳定、够优秀。yarn的优点：
+yarn 能兼容 npm 的配置文件 package.json，使用方式也非常接近 npm，所以我们可以基本上无缝从 npm 迁移到 yarn。而且 yarn 的确的确够快、够稳定、够优秀。yarn 的优点：
 
-* 速度快：Yarn 缓存了每个下载过的包，所以再次使用时无需重复下载。 同时利用并行下载以最大化资源利用率，因此安装速度更快。并行下载安装包，速度真的是杠杠的。
-* 比较安全：在执行代码之前，Yarn 会通过算法校验每个安装包的完整性。
-* 可靠：使用详细、简洁的锁文件格式和明确的安装算法，Yarn 能够保证在不同系统上无差异的工作。
-* 不管安装顺序如何，相同的依赖关系将在每台机器上以相同的方式安装。
-* 将依赖包的不同版本归结为单个版本，以避免创建多个副本。
-* 重试机制确保单个请求失败并不会导致整个安装失败。
+- 速度快：Yarn 缓存了每个下载过的包，所以再次使用时无需重复下载。 同时利用并行下载以最大化资源利用率，因此安装速度更快。并行下载安装包，速度真的是杠杠的。
+- 比较安全：在执行代码之前，Yarn 会通过算法校验每个安装包的完整性。
+- 可靠：使用详细、简洁的锁文件格式和明确的安装算法，Yarn 能够保证在不同系统上无差异的工作。
+- 不管安装顺序如何，相同的依赖关系将在每台机器上以相同的方式安装。
+- 将依赖包的不同版本归结为单个版本，以避免创建多个副本。
+- 重试机制确保单个请求失败并不会导致整个安装失败。
 
-### yarn的安装
+### yarn 的安装
 
-mac下安装：
+mac 下安装：
 
 ```shell
 brew install yarn
 ```
 
-windows安装：直接[下载安装包](https://yarn.bootcss.com/docs/install.html#windows-tab)。
+windows 安装：直接[下载安装包](https://yarn.bootcss.com/docs/install.html#windows-tab)。
 
 测试是否安装成功：
 
@@ -487,15 +483,16 @@ yarn --version
 0.24.5
 ```
 
-### npm和yarn的cli差异
+### npm 和 yarn 的 cli 差异
 
-以下只是简单介绍一下yarn的使用方法：
+以下只是简单介绍一下 yarn 的使用方法：
 
 初始化一个新的项目
+
 ```shell
 yarn init
 # 对应npm
-npm init 
+npm init
 ```
 
 添加一个依赖包
@@ -509,6 +506,7 @@ npm install [package]
 ```
 
 更新一个依赖包
+
 ```shell
 yarn upgrade [package]
 yarn upgrade [package]@[version]
@@ -519,6 +517,7 @@ npm update [package]
 ```
 
 删除一个依赖包
+
 ```shell
 yarn remove [package]
 # 对应npm
@@ -526,6 +525,7 @@ npm uninstall [package]
 ```
 
 安装所有的依赖包
+
 ```shell
 yarn
 or
@@ -548,8 +548,7 @@ yarn upgrade [package]
 npm update [package]
 ```
 
-
-注意：yarn全局安装了一些命令包之后，可能全局范围内不能访问，这时候需要把yarn的全局的bin目录加入到操作系统的环境变量中。
+注意：yarn 全局安装了一些命令包之后，可能全局范围内不能访问，这时候需要把 yarn 的全局的 bin 目录加入到操作系统的环境变量中。
 
 ```shell
 # 查看yarn的全局bin目录
@@ -559,15 +558,15 @@ yarn global bin
 /usr/local/Cellar/node/9.9.0/bin
 ```
 
-
 ## 总结
-至此，我们已经基本掌握了nodejs的包管理、包加载机制等基本原理，后面就是我们怎么应用他们进行开发了。
+
+至此，我们已经基本掌握了 nodejs 的包管理、包加载机制等基本原理，后面就是我们怎么应用他们进行开发了。
 
 ---
 
-参考：    
+参考：
 
-[深入浅出Node.js（三）：深入Node.js的模块机制](http://www.infoq.com/cn/articles/nodejs-module-mechanism?utm_source=articles_about_master-nodejs&utm_medium=link&utm_campaign=master-nodejs)
+[深入浅出 Node.js（三）：深入 Node.js 的模块机制](http://www.infoq.com/cn/articles/nodejs-module-mechanism?utm_source=articles_about_master-nodejs&utm_medium=link&utm_campaign=master-nodejs)
 
 [Yarn 中文网](https://yarn.bootcss.com/)
 
@@ -577,4 +576,4 @@ yarn global bin
 
 [老马免费视频教程](https://qtxh.ke.qq.com)
 
-[返回首页](../readme.md)
+[返回首页](https://malun666.github.io/aicoder_node/#/)

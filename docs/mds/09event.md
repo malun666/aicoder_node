@@ -1,10 +1,10 @@
 # Node 的事件处理
 
-Node中大量运用了事件回调，所以Node对事件做了单独的封装。所有能触发事件的对象都是 `EventEmitter` 类的实例,所以上一篇我们提到的文件操作的可读流、可写流等都是继承了 `EventEmitter`。当然我们也可以自定义具有事件行为的自定义对象，仅需要对其继承即可。
+Node 中大量运用了事件回调，所以 Node 对事件做了单独的封装。所有能触发事件的对象都是 `EventEmitter` 类的实例,所以上一篇我们提到的文件操作的可读流、可写流等都是继承了 `EventEmitter`。当然我们也可以自定义具有事件行为的自定义对象，仅需要对其继承即可。
 
-## 继承EventEmitter
+## 继承 EventEmitter
 
-node的`events`模块封装了`EventEmitter`类型，此类型里面封装了事件注册、触发等API。
+node 的`events`模块封装了`EventEmitter`类型，此类型里面封装了事件注册、触发等 API。
 
 ```js
 // 引入events模块
@@ -26,7 +26,6 @@ myEmitter.on('event', () => {
 
 // 触发event事件
 myEmitter.emit('event');
-
 ```
 
 ## 给回调函数传递参数
@@ -53,7 +52,6 @@ myEmitter.on('event', (a, b) => {
 
 // 触发event事件，并传递参数a、b
 myEmitter.emit('event', 'aicoder.com', '全栈实习');
-
 ```
 
 ## 错误处理的约定
@@ -74,7 +72,7 @@ myEmitter.emit('error', new Error('whoops!'));
 const myEmitter = new MyEmitter();
 
 // 给nodejs的进程增加未捕获异常的处理，防止程序崩溃
-process.on('uncaughtException', (err) => {
+process.on('uncaughtException', err => {
   console.error('有错误');
 });
 
@@ -138,7 +136,6 @@ class Application extends EventEmitter {
     // 初始化服务器
     this.init();
   }
-
 }
 
 /**/
@@ -150,15 +147,14 @@ app.on('preInit', () => {
   console.log('pre init');
 });
 app.start();
-
 ```
 
 ## 总结
 
-Node中的事件处理封装很简单易用，跟jQuery的事件系统非常类似。其实自己实现一套事件系统也不难，核心思想就是：发布订阅（观察者）模式。
+Node 中的事件处理封装很简单易用，跟 jQuery 的事件系统非常类似。其实自己实现一套事件系统也不难，核心思想就是：发布订阅（观察者）模式。
 
 ---
 
 [老马免费视频教程](https://qtxh.ke.qq.com)
 
-[返回首页](../readme.md)
+[返回首页](https://malun666.github.io/aicoder_node/#/)

@@ -426,15 +426,15 @@ function Module(id, parent) {
 
 
 module的其他属性：
-属性|类型|属性说明
----|---
-module.filename|string|模块的完全解析后的文件名
-module.id|string|模块的标识符。 通常是完全解析后的文件名。
-module.loaded| boolean |模块是否已经加载完成，或正在加载中。
-module.loaded| boolean |模块是否已经加载完成，或正在加载中。
-module.parent| object | 最先引用该模块的模块。
-module.paths|string|模块的搜索路径。
-module.children|object |被该模块引用的模块对象。
+| 属性              | 类型      | 属性说明                  |
+|-----------------|---------|-----------------------|
+| module.filename | string  | 模块的完全解析后的文件名          |
+| module.id       | string  | 模块的标识符。 通常是完全解析后的文件名。 |
+| module.loaded   | boolean | 模块是否已经加载完成，或正在加载中。    |
+| module.loaded   | boolean | 模块是否已经加载完成，或正在加载中。    |
+| module.parent   | object  | 最先引用该模块的模块。           |
+| module.paths    | string  | 模块的搜索路径。              |
+| module.children | object  | 被该模块引用的模块对象。          |
 
 详情请参考：[中文Node文档](http://nodejs.cn/api/modules.html)
 
@@ -465,4 +465,4 @@ es6的模块引入和导出跟以上都有点区别。不过肯定是未来的�
 
 [老马免费视频教程](https://qtxh.ke.qq.com)
 
-[返回首页](../readme.md)
+[返回首页](https://malun666.github.io/aicoder_node/#/)

@@ -41,9 +41,9 @@ windows的路径： C:\temp\myfile.html
 
 参数：
 
-* path <string> 完整文件名路径
-* ext <string> 可选的文件扩展名
-* 返回: <string> 文件名
+- path <string> 完整文件名路径
+- ext <string> 可选的文件扩展名
+- 返回: <string> 文件名
 
 例如：
 
@@ -104,8 +104,8 @@ path.posix.basename('/tmp/myfile.html');
 语法： `path.dirname(path)`
 参数：
 
-* `path <string>` ，要返回路径的变量
-* 返回: `<string>`
+- `path <string>` ，要返回路径的变量
+- 返回: `<string>`
 
 ```js
 path.dirname('/foo/bar/baz/asdf/quux');
@@ -119,8 +119,8 @@ path.dirname('/foo/bar/baz/asdf/quux');
 
 语法： `path.extname(path)`
 
-* 参数： `path` 是 `<string>`类型。
-* 返回: <string>
+- 参数： `path` 是 `<string>`类型。
+- 返回: <string>
 
 ```js
 path.extname('index.html');
@@ -147,13 +147,13 @@ path.extname('.index');
 
 语法：`path.format(pathObject)`
 
-* pathObject <Object> 要转换成路径字符串的设置对象
-  * dir <string> 所在目录，提供了 pathObject.dir，则 pathObject.root 会被忽略
-  * root <string> 根目录
-  * base <string> 文件全名。如果`pathObject.base` 存在，则 `pathObject.ext` 和 `pathObject.name` 会被忽略
-  * name <string> 文件名字（不带后缀）
-  * ext <string> 文件后缀
-* 返回: <string> 返回完整路径字符串
+- pathObject <Object> 要转换成路径字符串的设置对象
+  - dir <string> 所在目录，提供了 pathObject.dir，则 pathObject.root 会被忽略
+  - root <string> 根目录
+  - base <string> 文件全名。如果`pathObject.base` 存在，则 `pathObject.ext` 和 `pathObject.name` 会被忽略
+  - name <string> 文件名字（不带后缀）
+  - ext <string> 文件后缀
+- 返回: <string> 返回完整路径字符串
 
 ```js
 path.format({
@@ -217,9 +217,9 @@ path.relative() 方法返回从 from 到 to 的相对路径（基于当前工作
 语法： `path.relative(from, to)`
 参数：
 
-* from <string> 求相对路径的原始路径。
-* to <string> 求相对路径的最终路径。
-* 返回: <string> 返回相对于 from 的 to 的相对路径。
+- from <string> 求相对路径的原始路径。
+- to <string> 求相对路径的最终路径。
+- 返回: <string> 返回相对于 from 的 to 的相对路径。
 
 ```js
 path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb');
@@ -257,8 +257,8 @@ path.normalize() 方法会规范化给定的 path，并解析 '..' 和 '.' 片�
 
 语法： `path.normalize(path)`
 
-* path <string> 要进行规范的路径字符串
-* 返回: <string> 规范后的路径字符串
+- path <string> 要进行规范的路径字符串
+- 返回: <string> 规范后的路径字符串
 
 ```js
 path.normalize('/foo/bar//baz/asdf/quux/..');
@@ -335,4 +335,4 @@ node 的 path 模块使用非常简单，而且老马简单看了一下 node 的
 
 [老马免费视频教程](https://qtxh.ke.qq.com)
 
-[返回首页](../readme.md)
+[返回首页](https://malun666.github.io/aicoder_node/#/)

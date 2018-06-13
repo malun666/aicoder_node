@@ -19,28 +19,28 @@
 
 + `http.ClientRequest`类继承了`EventEmitter`,它内部定义了以下事件。
 
-事件|说明
----|---
-'abort' |当请求已被客户端终止时触发。 该事件仅在首次调用 abort() 时触发。
-'connect' |每当服务器响应 CONNECT 请求时触发。 如果该事件未被监听，则接收到 CONNECT 方法的客户端会关闭连接。
-'continue' |当服务器发送了一个 100 Continue 的 HTTP 响应时触发，通常是因为请求包含 Expect: 100-continue。 这是客户端将要发送请求主体的指令。
-'response' |当请求的响应被接收到时触发。 该事件只触发一次。如果没有添加 'response' 事件处理函数，则响应会被整个丢弃。 如果添加了 'response' 事件处理函数，则必须消耗完响应对象的数据，可通过调用 response.read()、或添加一个 'data' 事件处理函数、或调用 .resume() 方法。 数据被消耗完时会触发 'end' 事件。 在数据被读取完之前会消耗内存，可能会造成 'process out of memory' 错误。
-'socket' |当 socket 被分配到请求后触发。
-'timeout'|当底层 socket 超时的时候触发。该方法只会通知空闲的 socket。请求必须手动停止。
-'upgrade' |每当服务器响应 upgrade 请求时触发。 如果该事件未被监听，则接收到 upgrade 请求头的客户端会关闭连接。
+| 事件         | 说明                                                                                                                                                                                                                                  |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 'abort'    | 当请求已被客户端终止时触发。 该事件仅在首次调用 abort() 时触发。                                                                                                                                                                                               |
+| 'connect'  | 每当服务器响应 CONNECT 请求时触发。 如果该事件未被监听，则接收到 CONNECT 方法的客户端会关闭连接。                                                                                                                                                                          |
+| 'continue' | 当服务器发送了一个 100 Continue 的 HTTP 响应时触发，通常是因为请求包含 Expect: 100-continue。 这是客户端将要发送请求主体的指令。                                                                                                                                               |
+| 'response' | 当请求的响应被接收到时触发。 该事件只触发一次。如果没有添加 'response' 事件处理函数，则响应会被整个丢弃。 如果添加了 'response' 事件处理函数，则必须消耗完响应对象的数据，可通过调用 response.read()、或添加一个 'data' 事件处理函数、或调用 .resume() 方法。 数据被消耗完时会触发 'end' 事件。 在数据被读取完之前会消耗内存，可能会造成 'process out of memory' 错误。 |
+| 'socket'   | 当 socket 被分配到请求后触发。                                                                                                                                                                                                                 |
+| 'timeout'  | 当底层 socket 超时的时候触发。该方法只会通知空闲的 socket。请求必须手动停止。                                                                                                                                                                                      |
+| 'upgrade'  | 每当服务器响应 upgrade 请求时触发。 如果该事件未被监听，则接收到 upgrade 请求头的客户端会关闭连接。                                                                                                                                                                         |
 
 + `http.ClientRequest`类还提供了一些方法供我们进行请求和返回响应的处理。
 
-方法|参数|说明
----|---|---
-`request.end([data[, encoding]][, callback])`|①`data`发送的数据  ②`encoding`编码 ③callback回调函数|结束发送请求。如果部分请求主体还未被发送，则会刷新它们到流中。如果请求是分块的，则会发送终止字符 '0\r\n\r\n'。如果指定了 data，则相当于调用 request.write(data, encoding) 之后再调用 request.end(callback)。如果指定了 callback，则当请求流结束时会被调用。
-`request.flushHeaders()`|无|刷新请求头。出于效率的考虑，Node.js 通常会缓存请求头直到 request.end() 被调用或第一块请求数据被写入。 然后 Node.js 会将请求头和数据打包成一个单一的 TCP 数据包。
-`request.getHeader(name)`|①name ②返回字符串 |读出请求头，注意:参数name是大小写敏感的
-`request.removeHeader(name)`|name 字符串|移除一个已经在 headers 对象里面的 header。
-`request.setHeader(name, value)`|①name是header的key②value|为 headers 对象设置一个单一的 header 值。如果该 header 已经存在了，则将会被替换。这里使用一个字符串数组来设置有相同名称的多个 headers。
-`request.setSocketKeepAlive([enable][, initialDelay])`|①enable类型boolean②initialDelay|一旦 socket 被分配给请求且已连接，socket.setKeepAlive() 会被调用。
-`request.setTimeout(timeout[, callback])`|①timeout请求被认为是超时的毫秒数。②callback 可选的函数,当超时发生时被调用。|等同于绑定到 timeout 事件。一旦socket被分配给请求且已连接，socket.setTimeout() 会被调用。
-`request.write(chunk[, encoding][, callback])`|①chunk发送的请求数据。②encoding：编码；③callback回调函数|发送请求主体的一个数据块。 通过多次调用该方法，一个请求主体可被发送到一个服务器，在这种情况下，当创建请求时，建议使用 ['Transfer-Encoding', 'chunked'] 请求头。
+| 方法                                                     | 参数                                              | 说明                                                                                                                                                                    |
+|--------------------------------------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `request.end([data[, encoding]][, callback])`          | ①`data`发送的数据  ②`encoding`编码 ③callback回调函数       | 结束发送请求。如果部分请求主体还未被发送，则会刷新它们到流中。如果请求是分块的，则会发送终止字符 '0\r\n\r\n'。如果指定了 data，则相当于调用 request.write(data, encoding) 之后再调用 request.end(callback)。如果指定了 callback，则当请求流结束时会被调用。 |
+| `request.flushHeaders()`                               | 无                                               | 刷新请求头。出于效率的考虑，Node.js 通常会缓存请求头直到 request.end() 被调用或第一块请求数据被写入。 然后 Node.js 会将请求头和数据打包成一个单一的 TCP 数据包。                                                                   |
+| `request.getHeader(name)`                              | ①name ②返回字符串                                    | 读出请求头，注意:参数name是大小写敏感的                                                                                                                                                |
+| `request.removeHeader(name)`                           | name 字符串                                        | 移除一个已经在 headers 对象里面的 header。                                                                                                                                         |
+| `request.setHeader(name, value)`                       | ①name是header的key②value                          | 为 headers 对象设置一个单一的 header 值。如果该 header 已经存在了，则将会被替换。这里使用一个字符串数组来设置有相同名称的多个 headers。                                                                                  |
+| `request.setSocketKeepAlive([enable][, initialDelay])` | ①enable类型boolean②initialDelay                   | 一旦 socket 被分配给请求且已连接，socket.setKeepAlive() 会被调用。                                                                                                                      |
+| `request.setTimeout(timeout[, callback])`              | ①timeout请求被认为是超时的毫秒数。②callback 可选的函数,当超时发生时被调用。 | 等同于绑定到 timeout 事件。一旦socket被分配给请求且已连接，socket.setTimeout() 会被调用。                                                                                                        |
+| `request.write(chunk[, encoding][, callback])`         | ①chunk发送的请求数据。②encoding：编码；③callback回调函数        | 发送请求主体的一个数据块。 通过多次调用该方法，一个请求主体可被发送到一个服务器，在这种情况下，当创建请求时，建议使用 ['Transfer-Encoding', 'chunked'] 请求头。                                                                     |
 
 ### 发送GET请求
 
@@ -179,17 +179,17 @@ http.createServer(function(req,res){
 
 ServerRequest的属性
 
-名称 | 含义
----|---
-ccomplete| 客户端请求是否已经发送完成
-httpVersion| HTTP协议版本，通常是1.0或1.1
-method|  HTTP请求方法，如：GET,POST
-url| 原始的请求路径
-headers| HTTP请求头
-trailers|  HTTP请求尾(不常见)
-connection|  当前HTTP连接套接字，为net.Socket的实例
-socket|  connection属性的别名
-client | client属性的别名
+| 名称          | 含义                         |
+|-------------|----------------------------|
+| ccomplete   | 客户端请求是否已经发送完成              |
+| httpVersion | HTTP协议版本，通常是1.0或1.1        |
+| method      | HTTP请求方法，如：GET,POST        |
+| url         | 原始的请求路径                    |
+| headers     | HTTP请求头                    |
+| trailers    | HTTP请求尾(不常见)               |
+| connection  | 当前HTTP连接套接字，为net.Socket的实例 |
+| socket      | connection属性的别名            |
+| client      | client属性的别名                |
 
 ```
 http.createServer(function(req,res){
@@ -272,4 +272,4 @@ http
 
 [老马免费视频教程](https://qtxh.ke.qq.com)
 
-[返回首页](../readme.md)
+[返回首页](https://malun666.github.io/aicoder_node/#/)

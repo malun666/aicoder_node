@@ -1,6 +1,6 @@
 # 第一个 Nodejs 程序
 
-本教程仅适合您已经有一定的JS编程的基础或者是后端语言开发的基础。
+本教程仅适合您已经有一定的 JS 编程的基础或者是后端语言开发的基础。
 如果您是零基础，建议您先学一下老马的[前端免费视频教程](https://qtxh.ke.qq.com)
 
 ## 第一步：创建项目文件夹
@@ -44,4 +44,4 @@ Hi, aicoder.com! Hello, world!
 
 [老马免费视频教程](https://qtxh.ke.qq.com)
 
-[返回首页](../readme.md)
+[返回首页](https://malun666.github.io/aicoder_node/#/)
