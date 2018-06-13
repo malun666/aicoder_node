@@ -1,0 +1,512 @@
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>itcastmark:05module</title>
+	<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"
+	/>
+	<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css" />
+	<style>
+		pre {
+			counter-reset: line-numbering;
+			border: solid 1px #d9d9d9;
+			border-radius: 0;
+			background: #fff;
+			padding: 0;
+			line-height: 23px;
+			margin-bottom: 30px;
+			white-space: pre;
+			overflow-x: auto;
+			word-break: inherit;
+			word-wrap: inherit;
+		}
+		
+		pre a::before {
+			content: counter(line-numbering);
+			counter-increment: line-numbering;
+			padding-right: 1em;
+			/* space after numbers */
+			width: 25px;
+			text-align: right;
+			opacity: 0.7;
+			display: inline-block;
+			color: #aaa;
+			background: #eee;
+			margin-right: 16px;
+			padding: 2px 10px;
+			font-size: 13px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		
+		pre a:first-of-type::before {
+			padding-top: 10px;
+		}
+		
+		pre a:last-of-type::before {
+			padding-bottom: 10px;
+		}
+		
+		pre a:only-of-type::before {
+			padding: 10px;
+		}
+		
+		.highlight {
+			background-color: #ffffcc
+		}
+		/* RIGHT */
+		
+		.top-menu {
+			border-bottom: 1px solid #ccc;
+			overflow: hidden;
+			height: 49px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 2147483647;
+			background-color: #909090;
+			color: #f6f6f6;
+		}
+		
+		.top-menu ul,
+		.top-menu li {
+			list-style: none;
+		}
+		
+		.top-menu a {
+			font-size: 16px;
+			display: block;
+			float: left;
+			width: 100px;
+			height: 49px;
+			line-height: 49px;
+			border-radius: 3px;
+			text-align: center;
+			cursor: pointer;
+			color: #f6f6f6;
+		}
+		
+		.top-menu-title {
+			float: left;
+			margin-left: 100px;
+			height: 40px;
+			overflow: hidden;
+		}
+		body {
+			padding-top: 50px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="top-menu">
+		<ul>
+			<li>
+				<a href="http://www.cnblogs.com/fly_dragon/">老马博客</a>
+				<a href="http://www.aicoder.com">老马独立博客</a>
+			</li>
+		</ul>
+		<div class="top-menu-title">
+			<h3>生命在于分享，技术源于生命</h3>
+			<p>学无止境，谦虚慎行，三人行必有我师.</p>
+		</div>
+	</div>
+
+	<div>
+		<div style='width:25%;'>
+			<ul id="tree" class="ztree" style='width:100%'>
+
+			</ul>
+		</div>
+		<div id='readme' style='width:70%;margin-left:20%;'>
+			<article class='markdown-body'>
+				<h1 id="node-">node 模块化</h1>
+<p>JS 诞生的时候，仅仅是为了实现网页表单的本地校验和简单的 dom 操作处理。所以并没有模块化的规范设计。</p>
+<p>项目小的时候，我们可以通过命名空间、局部作用域、自执行函数等手段实现变量不冲突。但是到了大一点的项目，各种组件，各种第三方插件和各种 js 脚步融合的时候，就会发现这些技巧远远不够。</p>
+<h2 id="-">模块化的演变</h2>
+<p>为什么要有 JS 模块化呢？在浏览器中，顶层作用域的变量是全局的，所以项目稍微复杂点，如果引用的 js 非常多的时候，很容易造成命名冲突，然后造成很大意想不到的结果。</p>
+<p>为了避免全局污染，JS 前辈们想了很多办法，也就是前端的模块化的演变过程，可以参考我的视频：<a href="https://ke.qq.com/course/276435#tuin=1eb4a0a4">前端模块化演变</a></p>
+<p><strong>模块化演变过程：</strong></p>
+<ul>
+<li><p>对象封装</p>
+<ul>
+<li>所有的方法和属性封装到一个对象中</li>
+<li>所有的访问通过对象来访问，只污染一个对象，尽量避免污染其他。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-js">var module = {
+　star : 0,
+　　f1 : function ()
+　　　  //...
+　　},
+　f2 : function (){
+　　　　//...
+　　}
+　};
+module.f1();
+module.star = 1;
+</code></pre>
+<ul>
+<li><p>命名空间（对象封装的变种或者叫做升级）</p>
+<ul>
+<li>理论意义上减少了变量冲突</li>
+<li>缺点 1：暴露了模块中所有的成员，内部状态可以被外部改写，不安全</li>
+<li>缺点 2：命名空间会越来越长</li>
+</ul>
+<pre><code class="lang-js">var Shop = {}; // 顶层命名空间
+Shop.User = {}; // 电商的用户模块
+Shop.User.UserList = {}; //用户列表页面模块。
+Shop.User.UserList.length = 19; // 用户一共有19个。
+</code></pre>
+</li>
+<li><p>私有空间</p>
+<ul>
+<li>私有空间的变量和函数不会影响全局作用域</li>
+<li>公开公有方法，隐藏私有属性</li>
+</ul>
+<pre><code class="lang-js">// =&gt; 给单个文件里面定义的局部变量都 变成 局部作用域里面的变量。
+// 第二个尝试：
+// a.js
+(function() {
+  var a = 9;
+})();
+
+// b.js
+(function() {
+  var a = &#39;ssss&#39;;
+})();
+</code></pre>
+</li>
+<li><p>模块的维护和扩展</p>
+<ul>
+<li>开闭原则</li>
+<li>可维护性好</li>
+</ul>
+<pre><code class="lang-js">// laoma.core.js
+(function(laoma, d1, d2) {
+  laoma.Btn = {
+    getVal: function() {
+      console.log(&#39;val&#39;);
+    },
+    setVal: function(str) {
+      console.log(&#39;setvale&#39;);
+    }
+  };
+})(window.laoma || {}, depend1, depend2);
+
+// laoma.animate.js
+// 动画组件
+(function(laoma, d1, d2) {
+  laoma.animate = {};
+})(window.laoma || {}, depend1, depend2);
+
+// laoma.form.js
+// 表单组件
+(function(laoma, d1, d2) {
+  laoma.form = {};
+})(window.laoma || {}, depend1, depend2);
+</code></pre>
+</li>
+<li><p>围观jQuery的结构</p>
+</li>
+</ul>
+<pre><code class="lang-js">(function(window, undefined) {
+    var jQuery = function() {}
+    // ...
+    window.jQuery = window.$ = jQuery;
+})(window);
+</code></pre>
+<p>后续的演变就是，出现了 AMD、CMD、CommonJS 等模块化标准，然后前端模块化进入大爆发时代。</p>
+<h2 id="-js-">什么是 JS 模块化</h2>
+<p>JS 模块化就是指 JS 代码分成不同的模块，模块内部定义变量作用域只属于模块内部，模块之间变量命名不会相互冲突。各个模块相互独立，而且又可以通过某种方式相互引用协作。</p>
+<h2 id="-">模块化的标准</h2>
+<p>目前前端流行的几个模块化标准：<a href="http://wiki.commonjs.org/wiki/Modules/1.1">CommonJs</a>标准（node 的方案）、<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a>、<a href="https://github.com/cmdjs/specification/blob/master/draft/module.md">CMD</a>、ES6 模块方案。</p>
+<p>未来的趋势肯定是 ES6 的标准方案会逐渐统一。但是 AMD、CMD 标准跟 CommonJs 的标准相差不大，需要我们都研究一下。</p>
+<h2 id="requirejs-">requirejs 入门</h2>
+<p>requirejs 的使用：</p>
+<p>第一步：<a href="http://requirejs.org/docs/download.html">requirejs 下载</a></p>
+<p>第二步： 把 requirejs 直接引入到 html</p>
+<p><code>&lt;script src=&quot;js/require.js&quot;&gt;&lt;/script&gt;</code></p>
+<p>第三步： 设置当前页面的 js 入口文件</p>
+<p><code>&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/main&quot;&gt;&lt;/script&gt;</code></p>
+<p>data-main 属性的作用是，指定网页程序的主模块。意思是当前整个网页的入口代码。那么其他需要引用的 JS 文件呢？</p>
+<p>第四步： 引用其他模块的文件</p>
+<p>主模块依赖于其他模块，这时就要使用 AMD 规范定义的的 require()函数。</p>
+<pre><code class="lang-js">// main.js
+require([&#39;moduleA&#39;, &#39;moduleB&#39;, &#39;moduleC&#39;], function(moduleA, moduleB, moduleC) {
+  // some code here
+});
+</code></pre>
+<p>require()函数接受两个参数。第一个参数是一个数组，表示所依赖的模块，上例就是[&#39;moduleA&#39;, &#39;moduleB&#39;, &#39;moduleC&#39;]，即主模块依赖这三个模块；第二个参数是一个回调函数，当前面指定的模块都加载成功后，它将被调用。加载的模块会以参数形式传入该函数，从而在回调函数内部就可以使用这些模块。</p>
+<p>require()异步加载 moduleA，moduleB 和 moduleC，浏览器不会失去响应；它指定的回调函数，只有前面的模块都加载成功后，才会运行，解决了依赖性的问题。</p>
+<p>实际应用例子：</p>
+<pre><code class="lang-js">require([&#39;jquery&#39;, &#39;underscore&#39;, &#39;backbone&#39;], function($, _, Backbone) {
+  // some code here
+});
+</code></pre>
+<p>如果依赖的 JS 文件跟我们的 require.js 不在相同的目录，那么需要我们单独设置一下路径映射关系。</p>
+<pre><code class="lang-js">require.config({
+  paths: {
+    underscore: &#39;lib/underscore.min&#39;,
+    backbone: &#39;lib/backbone.min&#39;
+  }
+});
+</code></pre>
+<p>第五步：如何自定义 AMD 模块（可选）</p>
+<p>自定义的模块还依赖其他模块，那么 define()函数的第一个参数，必须是一个数组，指明该模块的依赖性</p>
+<pre><code class="lang-js">define([&#39;myLib&#39;], function(myLib) {
+  function foo() {
+    myLib.doSomething();
+  }
+  return {
+    foo: foo
+  };
+});
+</code></pre>
+<h2 id="cmd-sea-js">CMD 与 Sea.js</h2>
+<p>[Sea.js]在推广过程中逐渐形成了 CMD 的模块定义标准。具体详情请<a href="https://www.cnblogs.com/jiangxiaobo/p/5587234.html">参考</a>。</p>
+<p>跟 AMD 比较类似，而且兼容 CommonJS 的模块写法。</p>
+<p>CMD 推崇的是：依赖就近依赖，AMD 则默认约束模块一开始就声明相关依赖。其他定义方式及模块相关的变量都很相似。</p>
+<p>由于 Sea.js 官方文档很详细，在此就不再赘述。如何使用请参考<a href="https://seajs.github.io/seajs/docs/">官网</a>。</p>
+<h2 id="node-">Node 的模块化</h2>
+<p>Node.js 有一个简单的模块加载系统，遵循的是 CommonJS 的规范。 在 Node.js 中，文件和模块是一一对应的（每个文件被视为一个独立的模块）。</p>
+<p>Node 在加载 JS 文件的时候，自动给 JS 文件包装上定义模块的头部和尾部。</p>
+<pre><code class="lang-js">// nodejs 会自动给我们的js文件添加头部，见下行
+(function(exports, require, module, __filename, __dirname) {
+  // 这里是你自己写的js代码文件
+}); // 自定添加上尾部
+</code></pre>
+<p>见 NodeJs 的源码截图：</p>
+<p><img src="../img/01nodejs_module.png" alt="nodejs 原理图"></p>
+<p>Node会自动给js文件模块传递的5个参数，每个模块内的代码都可以直接用。而且您也看到了，我们的代码都会被包装到一个函数中，所以我们的代码的作用域都是在这个包装的函数内，这点跟浏览器的window全局作用域是不同的。</p>
+<p>模块内的参数说明：</p>
+<ul>
+<li>__dirname： 当前模块的文件夹名称</li>
+<li>__filename： 当前模块的文件名称---解析后的绝对路径。</li>
+<li>module: 当前模块的引用，通过此对象可以控制当前模块对外的行为和属性等。</li>
+<li>require：是一个函数，帮助引入其他模块.</li>
+<li>exports：这是一个对于 module.exports 的更简短的引用形式，也就是当前模块对外输出的引用。</li>
+</ul>
+<h3 id="-">如何加载模块</h3>
+<p>在模块内，我们可以通过require函数（此函数由nodejs自动传入，在模块内可以直接用）来加载js文件模块、node内置模块等。require函数需要传入要加载的模块的名字或者是文件名或者目录。</p>
+<pre><code class="lang-js">/*
+假设开发目录下有文件：
+.
+├── circle.js
+└── main.js
+*/
+
+// circle.js
+exports.pi = 3.1415926;  // 其他模块引用当前模块时，可以直接通过模块对象访问到 pi属性。
+
+// 主文件main.js：
+const circle = require(&#39;./circle.js&#39;); // 加载circle.js文件的module.export 赋值给circle
+console.log(circle.pi); // =&gt; 3.1415926
+</code></pre>
+<p>解释：<br>require加载文件circle.js后，此文件被node拼装成模块的代码，然后执行文件里面的js代码，并把模块内的module.exports做为模块的对外接口返回给引用者。</p>
+<pre><code class="lang-js">// circle.js 包装后的代码就是
+// nodejs 会自动给我们的js文件添加头部
+(function(exports, require, module, __filename, __dirname) {
+  exports.pi = 3.1415926;
+  // exports  === modeule.exports
+}); // 自定添加上尾部
+
+// 主文件main.js：
+const circle = require(&#39;./circle.js&#39;); 
+circle =&gt;  circle.js中的module.exports
+</code></pre>
+<h3 id="-">加载策略</h3>
+<p>Node.js的模块分为两类，一类为原生（核心）模块，一类为文件模块。</p>
+<ol>
+<li><p>模块在第一次加载后会被缓存。 这也意味着如果每次调用 require(&#39;foo&#39;) 都解析到同一文件，则返回相同的对象。</p>
+</li>
+<li><p>Node.js提供了一些底层的核心模块，它们定义在 Node.js 源代码的 lib/ 目录下。这些原生模块在Node.js源代码编译的时候编译进了二进制执行文件，加载的速度最快。开发人员自定义的js文件是动态加载的，加载速度比原生模块慢，这个只是在第一次加载有区别，模块加载完后都会被缓存，后续使用就不会被再次加载。</p>
+</li>
+<li><p>require() 总是会优先加载核心模块。 例如，require(&#39;http&#39;) 始终返回内置的 HTTP 模块，即使有同名文件。</p>
+</li>
+</ol>
+<p>文件模块中，又分为3类模块。这三类文件模块以后缀来区分，Node.js会根据后缀名来决定加载方法。</p>
+<ul>
+<li>.js。通过fs模块同步读取js文件并编译执行。</li>
+<li>.node。通过C/C++进行编写的Addon。通过dlopen方法进行加载。</li>
+<li>.json。读取文件，调用JSON.parse解析加载。</li>
+</ul>
+<p>参考源码：
+<img src="../img/02.png" alt="文件加载源码"></p>
+<h3 id="-">模块加载逻辑</h3>
+<p>require方法接受以下几种参数的传递：</p>
+<ul>
+<li>http、fs、path等，原生模块。</li>
+<li>./mod或../mod，相对路径的文件模块。</li>
+<li>/pathtomodule/mod，绝对路径的文件模块。</li>
+<li>mod，非原生模块的文件模块。</li>
+</ul>
+<p>文件加载的逻辑还是比较复杂的，而且考虑很多种情况。
+require加载文件模块，直接找对应完整文件名最快，如果不给文件后缀名，node会自动尝试添加 <code>js\json\mod</code>等后缀进行尝试。当没有以 &#39;/&#39;、&#39;./&#39; 或 &#39;../&#39; 开头来表示文件时，这个模块必须是一个核心模块或加载自 node_modules 目录。如果给定的路径不存在，则 require() 会抛出一个 code 属性为 &#39;MODULE_NOT_FOUND&#39; 的 Error。
+如果加载目录，又分三种情况：
+第一种方式是在根目录下创建一个 package.json 文件，并指定一个 main 模块。 例子，package.json 文件类似：</p>
+<pre><code class="lang-js">{ 
+  &quot;name&quot; : &quot;some-library&quot;,
+  &quot;main&quot; : &quot;./lib/some-library.js&quot;
+}
+</code></pre>
+<p>如果这是在 ./some-library 目录中，则 require(&#39;./some-library&#39;) 会试图加载 ./some-library/lib/some-library.js。不存在也会报错。</p>
+<p>如果目录里没有 package.json 文件，则 Node.js 就会试图加载目录下的 index.js 或 index.node 文件。 例如，如果上面的例子中没有 package.json 文件，则 require(&#39;./some-library&#39;) 会试图加载：</p>
+<pre><code>./some-library/index.js
+./some-library/index.node
+</code></pre><p>其他的情况，则从 node_modules 目录加载。 Node.js 会从当前模块的父目录开始，尝试从它的 /node_modules 目录里加载模块。 Node.js 不会附加 node_modules 到一个已经以 node_modules 结尾的路径上。</p>
+<p>如果还是没有找到，则移动到再上一层父目录，直到文件系统的根目录。</p>
+<p>例子，如果在 &#39;/home/ry/projects/foo.js&#39; 文件里调用了 require(&#39;bar.js&#39;)，则 Node.js 会按以下顺序查找：</p>
+<pre><code>/home/ry/projects/node_modules/bar.js
+/home/ry/node_modules/bar.js
+/home/node_modules/bar.js
+/node_modules/bar.js
+</code></pre><p>这使得程序本地化它们的依赖，避免它们产生冲突。</p>
+<blockquote>
+<p>可以通过module.paths打印当前node寻找模块要搜索的所有路径。</p>
+</blockquote>
+<p>综上逻辑，看官网的加载逻辑伪代码：</p>
+<pre><code>从 Y 路径的模块 require(X)
+1. 如果 X 是一个核心模块，
+   a. 返回核心模块
+   b. 结束
+2. 如果 X 是以 &#39;/&#39; 开头
+   a. 设 Y 为文件系统根目录
+3. 如果 X 是以 &#39;./&#39; 或 &#39;/&#39; 或 &#39;../&#39; 开头
+   a. 加载文件(Y + X)
+   b. 加载目录(Y + X)
+4. 加载Node模块(X, dirname(Y))
+5. 抛出 &quot;未找到&quot;
+
+加载文件(X)
+1. 如果 X 是一个文件，加载 X 作为 JavaScript 文本。结束
+2. 如果 X.js 是一个文件，加载 X.js 作为 JavaScript 文本。结束
+3. 如果 X.json 是一个文件，解析 X.json 成一个 JavaScript 对象。结束
+4. 如果 X.node 是一个文件，加载 X.node 作为二进制插件。结束
+
+加载索引(X)
+1. 如果 X/index.js 是一个文件，加载 X/index.js 作为 JavaScript 文本。结束
+3. 如果 X/index.json  是一个文件，解析 X/index.json 成一个 JavaScript 对象。结束
+4. 如果 X/index.node 是一个文件，加载 X/index.node 作为二进制插件。结束
+
+加载目录(X)
+1. 如果 X/package.json 是一个文件，
+   a. 解析 X/package.json，查找 &quot;main&quot; 字段
+   b. let M = X + (json main 字段)
+   c. 加载文件(M)
+   d. 加载索引(M)
+2. 加载索引(X)
+
+加载Node模块(X, START)
+1. let DIRS=NODE_MODULES_PATHS(START)
+2. for each DIR in DIRS:
+   a. 加载文件(DIR/X)
+   b. 加载目录(DIR/X)
+
+NODE_MODULES_PATHS(START)
+1. let PARTS = path split(START)
+2. let I = count of PARTS - 1
+3. let DIRS = []
+4. while I &gt;= 0,
+   a. if PARTS[I] = &quot;node_modules&quot; CONTINUE
+   b. DIR = path join(PARTS[0 .. I] + &quot;node_modules&quot;)
+   c. DIRS = DIRS + DIR
+   d. let I = I - 1
+5. return DIRS
+</code></pre><p>总结：</p>
+<p>我们自己加载模块的时候，尽量的写全点，尽量不要让node去推断，引用文件模块直接把文件名写全，文件</p>
+<h2 id="module-">module 对象</h2>
+<p>如果想查看当前模块，可以直接使用console直接打印一下module对象。</p>
+<pre><code class="lang-js">console.dir(module);
+// 打印结果：
+Module {
+  id: &#39;.&#39;,
+  exports: {},
+  parent: null,
+  filename: &#39;/Users/flydragon/Desktop/work/gitdata/nodedemos/demos/02console.js&#39;,
+  loaded: false,
+  children: [],
+  paths:
+   [ &#39;/Users/flydragon/Desktop/work/gitdata/nodedemos/demos/node_modules&#39;,
+     &#39;/Users/flydragon/Desktop/work/gitdata/nodedemos/node_modules&#39;,
+     &#39;/Users/flydragon/Desktop/work/gitdata/node_modules&#39;,
+     &#39;/Users/flydragon/Desktop/work/node_modules&#39;,
+     &#39;/Users/flydragon/Desktop/node_modules&#39;,
+     &#39;/Users/flydragon/node_modules&#39;,
+     &#39;/Users/node_modules&#39;,
+     &#39;/node_modules&#39; ] }
+</code></pre>
+<p>在每个模块中，module 的自由变量是一个指向表示当前模块的对象的引用。 为了方便，module.exports 也可以通过全局模块的 exports 对象访问。</p>
+<p>module.exports 与 exports区别，看Node中的源码就知道了。</p>
+<pre><code class="lang-js">// 模块的构造函数
+function Module(id, parent) {
+  this.id = id;
+  this.exports = {};   // 模块实例的exports属性初始化！！！module.exports === exports
+  this.parent = parent;
+  updateChildren(parent, this, false);
+  this.filename = null;
+  this.loaded = false;
+  this.children = [];
+}
+</code></pre>
+<p><code>exports</code> 是 <code>module.exports</code> 的一个引用，就好比在每一个模块定义最开始的地方写了这么一句代码：<code>var exports = module.exports</code></p>
+<p>要注意的一点就是： 最终模块会把module.exports作为对外的接口。所以，module.exports的引用地址发生了改变，在改变之前通过exports属性设置的都会被遗弃。</p>
+<p>module的其他属性：
+属性|类型|属性说明
+---|---
+module.filename|string|模块的完全解析后的文件名
+module.id|string|模块的标识符。 通常是完全解析后的文件名。
+module.loaded| boolean |模块是否已经加载完成，或正在加载中。
+module.loaded| boolean |模块是否已经加载完成，或正在加载中。
+module.parent| object | 最先引用该模块的模块。
+module.paths|string|模块的搜索路径。
+module.children|object |被该模块引用的模块对象。</p>
+<p>详情请参考：<a href="http://nodejs.cn/api/modules.html">中文Node文档</a></p>
+<h2 id="es6-">es6的模块</h2>
+<p>es6的模块引入和导出跟以上都有点区别。不过肯定是未来的统一的模型。node目前版本位置并没有es6的模块api支持的很好，只是在实验阶段。不过我们可以借助babel来转换我们的js代码，可以放心的使用。</p>
+<p>由于这块内容，请直接参考<a href="http://es6.ruanyifeng.com/">阮一峰老师的es6入门</a></p>
+<h2 id="-">总结</h2>
+<p>从客户端到服务端我们都搞定了js的模块化，也就是说让js走向了工程化，大型应用的基础被奠定了。当然，目前业界模块化已经走入深水区，尤其是webpack已经可以让前端的大部分资源都模块化使用。</p>
+<p>我们已经搞定了，自己书写模块，已经引用核心模块、自己写的模块，那么怎么引用第三方模块，怎么使用package文件，好吧提前透露一下：npm解密（下一节）</p>
+<hr>
+<p>参考：</p>
+<ol>
+<li><a href="https://nodejs.org/">NodeJs 官网文档</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects">MDN 文档</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html">Javascript 模块化编程（二）：AMD 规范</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html">Javascript 模块化编程（三）：require.js 的用法</a></li>
+<li><a href="https://www.cnblogs.com/jiangxiaobo/p/5587234.html">CMD 模块定义规范</a></li>
+</ol>
+<hr>
+<p><a href="https://qtxh.ke.qq.com">老马免费视频教程</a></p>
+<p><a href="../readme.md">返回首页</a></p>
+
+			</article>
+		</div>
+	</div>
+</body>
+
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript">
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

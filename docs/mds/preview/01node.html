@@ -1,0 +1,210 @@
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>itcastmark:01node</title>
+	<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"
+	/>
+	<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css" />
+	<style>
+		pre {
+			counter-reset: line-numbering;
+			border: solid 1px #d9d9d9;
+			border-radius: 0;
+			background: #fff;
+			padding: 0;
+			line-height: 23px;
+			margin-bottom: 30px;
+			white-space: pre;
+			overflow-x: auto;
+			word-break: inherit;
+			word-wrap: inherit;
+		}
+		
+		pre a::before {
+			content: counter(line-numbering);
+			counter-increment: line-numbering;
+			padding-right: 1em;
+			/* space after numbers */
+			width: 25px;
+			text-align: right;
+			opacity: 0.7;
+			display: inline-block;
+			color: #aaa;
+			background: #eee;
+			margin-right: 16px;
+			padding: 2px 10px;
+			font-size: 13px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		
+		pre a:first-of-type::before {
+			padding-top: 10px;
+		}
+		
+		pre a:last-of-type::before {
+			padding-bottom: 10px;
+		}
+		
+		pre a:only-of-type::before {
+			padding: 10px;
+		}
+		
+		.highlight {
+			background-color: #ffffcc
+		}
+		/* RIGHT */
+		
+		.top-menu {
+			border-bottom: 1px solid #ccc;
+			overflow: hidden;
+			height: 49px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 2147483647;
+			background-color: #909090;
+			color: #f6f6f6;
+		}
+		
+		.top-menu ul,
+		.top-menu li {
+			list-style: none;
+		}
+		
+		.top-menu a {
+			font-size: 16px;
+			display: block;
+			float: left;
+			width: 100px;
+			height: 49px;
+			line-height: 49px;
+			border-radius: 3px;
+			text-align: center;
+			cursor: pointer;
+			color: #f6f6f6;
+		}
+		
+		.top-menu-title {
+			float: left;
+			margin-left: 100px;
+			height: 40px;
+			overflow: hidden;
+		}
+		body {
+			padding-top: 50px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="top-menu">
+		<ul>
+			<li>
+				<a href="http://www.cnblogs.com/fly_dragon/">老马博客</a>
+				<a href="http://www.aicoder.com">老马独立博客</a>
+			</li>
+		</ul>
+		<div class="top-menu-title">
+			<h3>生命在于分享，技术源于生命</h3>
+			<p>学无止境，谦虚慎行，三人行必有我师.</p>
+		</div>
+	</div>
+
+	<div>
+		<div style='width:25%;'>
+			<ul id="tree" class="ztree" style='width:100%'>
+
+			</ul>
+		</div>
+		<div id='readme' style='width:70%;margin-left:20%;'>
+			<article class='markdown-body'>
+				<p>﻿# Node 概述</p>
+<h2 id="-node">什么是 Node</h2>
+<p><strong>Node.js®</strong> is a JavaScript runtime built on Chrome&#39;s V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js&#39; package ecosystem, npm, is the largest ecosystem of open source libraries in the world.</p>
+<blockquote>
+<p>中文翻译：Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统。</p>
+</blockquote>
+<p>Node.js 于 2009 年写成，其原始作者是瑞安·达尔（Ryan Dahl），Node.js 基金会于 2015 年初成立。基金会得到了 IBM、Intel、微软、Joyent 等公司的支持，目前 Node.js 的研发和管理由 Node.js 基金会统一管理。</p>
+<h2 id="node-">Node 的意义</h2>
+<ul>
+<li><p>node 开启了 JavaScript 牛逼的后端之旅。【虽然，在 Node 之前就有 js 服务端的尝试，但是都没有 Node 成功】</p>
+</li>
+<li><p>由于 node 集成了 js 单线程、事件驱动、非阻塞 I/O 模型等优点，NodeJs 天生就非常适宜做高性能的网络请求、密集 IO 的应用，为前端开发者敞开了全栈的大门</p>
+</li>
+<li><p>node 还为前端开发工具百花齐放百家争鸣提供了基础环境，让前端真正进入工程化时代。</p>
+</li>
+<li><p>....</p>
+</li>
+</ul>
+<h2 id="node-">Node 能干什么</h2>
+<ul>
+<li>高性能的网站服务器</li>
+<li>实时多人游戏后台服务器</li>
+<li>简单易用的命名行应用程序</li>
+<li>gulp、less、bower、fis、http-server</li>
+<li>高大上的桌面应用程序</li>
+<li>使用 Web 技术 作为解决方案</li>
+<li>electron Linus + Max + Windows</li>
+<li>底层的物联网开发</li>
+<li>移动开发</li>
+<li>.....</li>
+</ul>
+<h2 id="-">诞生过程</h2>
+<p>Node 的作者：<code>Ryan Dahl</code></p>
+<ul>
+<li>2004年还在纽约读数学系博士</li>
+<li>2006年退学（世界那么大，我想去看看），生活所迫，选择了码农</li>
+<li>接项目、工作、旅行，两年之后，成为了高性能Web服务器的专家</li>
+<li>2009年5月，Ryan Dahl 在 github 上发布了最初的 Node 版本</li>
+<li>2010年底，Ryan Dahl 加入 Joyent 公司全职负责 Node 的发展</li>
+<li>2011年7月，Node 在微软的支持下发布了 Windows 版</li>
+<li>2012年1月底，Ryan Dahl 将掌门人身份转交给了 Isaac Z.Schlueter，自己转向一些研究项目</li>
+<li>2014年12月，多为重量级Node开发者不满 Joyent 对 Node 的管理，自立门户创建了 <code>io.js</code></li>
+<li>2015年9月，Node 与 io.js 合并，Node 的版本从 0.12.7 直接升级到了 4.0.0</li>
+<li>合并后的 io.js 和 Node 在 Joyent 公司的维护下并行了两个版本：<ul>
+<li>一个是4.x.x  还是原来的 Node，这个版本是稳定版</li>
+<li>一个是5.x.x，目前已经更新到了 6.8.1，其实就是 io.js，最新特性版，不建议生产环境使用</li>
+</ul>
+</li>
+<li>Node 计划在 2016 年 10月底正式发布 Node 7.0<ul>
+<li>7.0 已经最大限度的支持了很多的 ES6 新语法</li>
+<li>而且提高了整体的执行性能，提供了一些别的API</li>
+</ul>
+</li>
+</ul>
+<h2 id="-">总结</h2>
+<p>Node是一个开发平台，这个开发平台运行的语言是JS（其实也可以运行C++），它可以把JS代码编译成本地的本地操作系统的命令，直接运行在操作系统之上，让JS拥有了无比广阔的发展空间。</p>
+<hr>
+<p><a href="https://qtxh.ke.qq.com">老马免费视频教程</a></p>
+<p><a href="../readme.md">返回首页</a></p>
+
+			</article>
+		</div>
+	</div>
+</body>
+
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript">
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

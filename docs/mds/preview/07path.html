@@ -1,0 +1,394 @@
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>itcastmark:07path</title>
+	<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"
+	/>
+	<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css" />
+	<style>
+		pre {
+			counter-reset: line-numbering;
+			border: solid 1px #d9d9d9;
+			border-radius: 0;
+			background: #fff;
+			padding: 0;
+			line-height: 23px;
+			margin-bottom: 30px;
+			white-space: pre;
+			overflow-x: auto;
+			word-break: inherit;
+			word-wrap: inherit;
+		}
+		
+		pre a::before {
+			content: counter(line-numbering);
+			counter-increment: line-numbering;
+			padding-right: 1em;
+			/* space after numbers */
+			width: 25px;
+			text-align: right;
+			opacity: 0.7;
+			display: inline-block;
+			color: #aaa;
+			background: #eee;
+			margin-right: 16px;
+			padding: 2px 10px;
+			font-size: 13px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		
+		pre a:first-of-type::before {
+			padding-top: 10px;
+		}
+		
+		pre a:last-of-type::before {
+			padding-bottom: 10px;
+		}
+		
+		pre a:only-of-type::before {
+			padding: 10px;
+		}
+		
+		.highlight {
+			background-color: #ffffcc
+		}
+		/* RIGHT */
+		
+		.top-menu {
+			border-bottom: 1px solid #ccc;
+			overflow: hidden;
+			height: 49px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 2147483647;
+			background-color: #909090;
+			color: #f6f6f6;
+		}
+		
+		.top-menu ul,
+		.top-menu li {
+			list-style: none;
+		}
+		
+		.top-menu a {
+			font-size: 16px;
+			display: block;
+			float: left;
+			width: 100px;
+			height: 49px;
+			line-height: 49px;
+			border-radius: 3px;
+			text-align: center;
+			cursor: pointer;
+			color: #f6f6f6;
+		}
+		
+		.top-menu-title {
+			float: left;
+			margin-left: 100px;
+			height: 40px;
+			overflow: hidden;
+		}
+		body {
+			padding-top: 50px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="top-menu">
+		<ul>
+			<li>
+				<a href="http://www.cnblogs.com/fly_dragon/">老马博客</a>
+				<a href="http://www.aicoder.com">老马独立博客</a>
+			</li>
+		</ul>
+		<div class="top-menu-title">
+			<h3>生命在于分享，技术源于生命</h3>
+			<p>学无止境，谦虚慎行，三人行必有我师.</p>
+		</div>
+	</div>
+
+	<div>
+		<div style='width:25%;'>
+			<ul id="tree" class="ztree" style='width:100%'>
+
+			</ul>
+		</div>
+		<div id='readme' style='width:70%;margin-left:20%;'>
+			<article class='markdown-body'>
+				<h1 id="path-">path 模块详解</h1>
+<p><code>path</code> 模块提供了一些工具函数，用于处理文件与目录的路径。由于windows和其他系统之间路径不统一，<code>path</code>模块还专门做了相关处理，屏蔽了彼此之间的差异。</p>
+<h2 id="-posix-">可移植操作系统接口(POSIX)</h2>
+<p>可移植操作系统接口（英语：Portable Operating System Interface，缩写为POSIX），是IEEE为要在各种UNIX操作系统上运行软件，而定义API的一系列互相关联的标准的总称，其正式称呼为IEEE Std 1003，而国际标准名称为ISO/IEC 9945。此标准源于一个大约开始于1985年的项目。POSIX这个名称是由理查德·斯托曼应IEEE的要求而提议的一个易于记忆的名称。它基本上是Portable Operating System Interface（可移植操作系统接口）的缩写，而X则表明其对Unix API的传承。</p>
+<p>Linux基本上逐步实现了POSIX兼容，但并没有参加正式的POSIX认证。</p>
+<p>微软的Windows NT声称部分实现了POSIX标准。</p>
+<p>当前的POSIX主要分为四个部分：Base Definitions、System Interfaces、Shell and Utilities和Rationale。</p>
+<p><strong>综述：目前主流的类Unix操作系统：Unix、Linux都会兼容POSIX的标准，而Windows只是部分实行了POSIX标准，所以后面我们说POSIX系统是指类Unix系统</strong></p>
+<h2 id="windows-unix-">windows系统和类Unix系统的路径的区别</h2>
+<h3 id="-">目录结构的区别</h3>
+<p>可能大家比较熟悉windows资源管理系统，windows是分不同的磁盘，然后磁盘下面都是树状结构的文件和文件夹。</p>
+<p>而类Unix（Unix、Linux）系统中是不分盘符的，只有一个根目录 <code>/</code>， 都是都是这个下面的子目录或者文件，当然也是树状的机构。</p>
+<p>Linux的目录结构</p>
+<p><img src="../img/03.jpeg" alt="linux的目录结构">;</p>
+<h3 id="-">路径的区别</h3>
+<p>除了目录结构有区别外，路径也是有区别的。windows是用反斜杠<code>\</code>分割目录或者文件的，而在类Unix的系统中是用的<code>/</code>。</p>
+<pre><code>windows的路径： C:\temp\myfile.html
+类Unix的路径：  /tmp/myfile.html
+</code></pre><h2 id="path-">path模块获取路径中的文件名</h2>
+<p>语法：<code>path.basename(path[, ext])</code></p>
+<p>参数：</p>
+<ul>
+<li>path <string> 完整文件名路径</li>
+<li>ext <string> 可选的文件扩展名</li>
+<li>返回: <string> 文件名</li>
+</ul>
+<p>例如：</p>
+<pre><code class="lang-js">path.basename(&#39;/foo/bar/baz/asdf/quux.html&#39;);
+// 返回: &#39;quux.html&#39;
+
+path.basename(&#39;/foo/bar/baz/asdf/quux.html&#39;, &#39;.html&#39;);
+// 返回: &#39;quux&#39;
+</code></pre>
+<blockquote>
+<p>注意：如果 path 不是一个字符串或提供了 ext 但不是一个字符串，则抛出 TypeError。</p>
+</blockquote>
+<p>完整实例：</p>
+<pre><code class="lang-js">const path = require(&#39;path&#39;);  // 引入path模块
+let linuxPath = &#39;/Users/aicoder/abc.html&#39;;
+let name = path.basename(linuxPath);
+console.log(name);
+
+let winPath = &#39;c:\\temp\\abc.html&#39;;
+let winName = path.basename(linuxPath);
+console.log(winName);
+
+console.log(path.basename(linuxPath, &#39;.html&#39;)); // =&gt; abc,去掉后缀输出文件名
+
+// 输出结果
+abc.html
+abc.html
+abc
+</code></pre>
+<h2 id="node-win32-posix-api">node提供了win32和posix兼容的api</h2>
+<p>默认情况下，node会根据不同的系统做相关兼容处理，力保输出的结果在不同平台下是一致的，但是某些情况下还是不能完美的兼容所有的情况。所以，node提供了<code>win32</code>和<code>posix</code>各自对应path的所有的api。也就是说：<code>path</code>模块的api都可以通过<code>path.win32</code> 或者 <code>path.posix</code>调用。</p>
+<p>要想在任何操作系统上处理 Windows 文件路径时获得一致的结果，可以使用 <code>path.win32</code></p>
+<pre><code class="lang-js">path.win32.basename(&#39;C:\\temp\\myfile.html&#39;);
+// 返回: &#39;myfile.html&#39;
+</code></pre>
+<p>要想在任何操作系统上处理 POSIX 文件路径时获得一致的结果，可以使用 <code>path.posix</code></p>
+<pre><code class="lang-js">path.posix.basename(&#39;/tmp/myfile.html&#39;);
+// 返回: &#39;myfile.html&#39;
+</code></pre>
+<p>其他api也是一致的，不再赘述。</p>
+<h2 id="-">获取路径的文件夹</h2>
+<p><code>path.dirname()</code> 方法返回一个 path 的目录名。</p>
+<p>语法： <code>path.dirname(path)</code>
+参数：</p>
+<ul>
+<li><code>path &lt;string&gt;</code> ，要返回路径的变量</li>
+<li>返回: <code>&lt;string&gt;</code></li>
+</ul>
+<pre><code class="lang-js">path.dirname(&#39;/foo/bar/baz/asdf/quux&#39;);
+// 返回: &#39;/foo/bar/baz/asdf&#39;
+</code></pre>
+<h2 id="-">获取路径的扩展名</h2>
+<p><code>path.extname()</code> 方法返回 path 的扩展名，即从 path 的最后一部分中的最后一个 .（句号）字符到字符串结束。<br>如果 path 的最后一部分没有 <code>.</code> 或 path 的文件名的第一个字符是 <code>.</code>，则返回一个空字符串。</p>
+<p>语法： <code>path.extname(path)</code></p>
+<ul>
+<li>参数： <code>path</code> 是 <code>&lt;string&gt;</code>类型。    </li>
+<li>返回: <string></li>
+</ul>
+<pre><code class="lang-js">path.extname(&#39;index.html&#39;);
+// 返回: &#39;.html&#39;
+path.extname(&#39;/etc/a/index.html&#39;);
+// 返回: &#39;.html&#39;
+
+path.extname(&#39;index.coffee.md&#39;);
+// 返回: &#39;.md&#39;
+
+path.extname(&#39;index.&#39;);
+// 返回: &#39;.&#39;
+
+path.extname(&#39;index&#39;);
+// 返回: &#39;&#39;
+
+path.extname(&#39;.index&#39;);
+// 返回: &#39;&#39;
+</code></pre>
+<h2 id="-">格式化一个路径</h2>
+<p><code>path.format()</code> 方法会从一个对象返回一个路径字符串。</p>
+<p>语法：<code>path.format(pathObject)</code></p>
+<ul>
+<li>pathObject <Object> 要转换成路径字符串的设置对象<ul>
+<li>dir <string>  所在目录，提供了 pathObject.dir，则 pathObject.root 会被忽略</li>
+<li>root <string> 根目录</li>
+<li>base <string> 文件全名。如果<code>pathObject.base</code> 存在，则 <code>pathObject.ext</code> 和 <code>pathObject.name</code> 会被忽略</li>
+<li>name <string> 文件名字（不带后缀）</li>
+<li>ext <string>  文件后缀</li>
+</ul>
+</li>
+<li>返回: <string>   返回完整路径字符串</li>
+</ul>
+<pre><code class="lang-js">path.format({
+  dir: &#39;/home/user/dir&#39;,
+  base: &#39;file.txt&#39;
+});
+// 返回: &#39;/home/user/dir/file.txt&#39;
+
+path.format({
+  root: &#39;/&#39;,
+  name: &#39;file&#39;,
+  ext: &#39;.txt&#39;
+});
+// 返回: &#39;/file.txt&#39;
+</code></pre>
+<h2 id="-">把路径字符串转换成对象</h2>
+<p><code>path.parse()</code> 方法返回一个对象，对象的属性表示 path 的元素。 </p>
+<p><code>parse</code>方法跟 <code>format</code>方法正好相反，所以不赘述。直接看例子：</p>
+<pre><code class="lang-js">let pathObj = path.parse(&#39;/users/home/aicoder/a.html&#39;);
+console.dir(pathObj);
+
+// 输出如下
+{ root: &#39;/&#39;,
+  dir: &#39;/users/home/aicoder&#39;,
+  base: &#39;a.html&#39;,
+  ext: &#39;.html&#39;,
+  name: &#39;a&#39; }
+</code></pre>
+<h2 id="-">连接多个路径<strong>重点</strong></h2>
+<p><code>path.join()</code> 方法使用平台特定的分隔符把全部给定的 path 片段连接到一起，并规范化生成的路径。<br>长度为零的 path 片段会被忽略。 如果连接后的路径字符串是一个长度为零的字符串，则返回 &#39;.&#39;，表示当前工作目录。</p>
+<p>参数说明：<br><code>...paths &lt;string&gt;</code> 一个路径片段的序列。
+返回: <string></p>
+<pre><code class="lang-js">path.join(&#39;/foo&#39;, &#39;bar&#39;, &#39;baz/asdf&#39;, &#39;quux&#39;, &#39;..&#39;);
+// 返回: &#39;/foo/bar/baz/asdf&#39;
+path.join(&#39;/foot&#39;, __filename); // __filename是模块内的变量，代表当前js文件
+// 返回：/foot/xxx.js    
+
+// 以下路径拼接的方式不推荐：
+var strPath = &#39;/foot/&#39; + &#39;xxx.js&#39;;  //虽然跟上面实现的方式一致，但是不推荐。
+</code></pre>
+<blockquote>
+<p>注意：不推荐路径直接进行字符串拼接，毕竟win和POSIX系统路径有区别。</p>
+</blockquote>
+<h2 id="-">获取相对路径</h2>
+<p>path.relative() 方法返回从 from 到 to 的相对路径（基于当前工作目录）。<br>如果 from 和 to 各自解析到同一路径（调用 path.resolve()），则返回一个长度为零的字符串。<br>如果 from 或 to 传入了一个长度为零的字符串，则当前工作目录会被用于代替长度为零的字符串。      </p>
+<p>语法： <code>path.relative(from, to)</code>
+参数：</p>
+<ul>
+<li>from <string> 求相对路径的原始路径。</li>
+<li>to <string>   求相对路径的最终路径。</li>
+<li>返回: <string> 返回相对于from的 to的相对路径。</li>
+</ul>
+<pre><code class="lang-js">path.relative(&#39;/data/orandea/test/aaa&#39;, &#39;/data/orandea/impl/bbb&#39;);
+// 返回: &#39;../../impl/bbb&#39;
+</code></pre>
+<h2 id="-">智能解析绝对路径</h2>
+<p>path.resolve() 方法会把一个路径或路径片段的序列解析为一个绝对路径。</p>
+<pre><code>规则：
+1. 给定的路径的序列是从右往左被处理的，后面每个 path 被依次解析，直到构造完成一个绝对路径。
+2. 如果处理完全部给定的 path 片段后还未生成一个绝对路径，则当前工作目录会被用上。
+3. 生成的路径是规范化后的，且末尾的斜杠会被删除，除非路径被解析为根目录。
+4. 长度为零的 path 片段会被忽略。
+5. 如果没有传入 path 片段，则 path.resolve() 会返回当前工作目录的绝对路径。
+</code></pre><pre><code class="lang-js">path.resolve(&#39;/foo/bar&#39;, &#39;./baz&#39;);
+// 返回: &#39;/foo/bar/baz&#39;
+path.resolve(&#39;/foo/bar&#39;, &#39;/tmp/file/&#39;);
+// 返回: &#39;/tmp/file&#39;
+path.resolve(&#39;wwwroot&#39;, &#39;static_files/png/&#39;, &#39;../gif/image.gif&#39;);
+// 如果当前工作目录为 /home/myself/node，
+// 则返回 &#39;/home/myself/node/wwwroot/static_files/gif/image.gif&#39;
+</code></pre>
+<h2 id="-">对路径字符串进行规范化</h2>
+<p>path.normalize() 方法会规范化给定的 path，并解析 &#39;..&#39; 和 &#39;.&#39; 片段。<br>当发现多个连续的路径分隔符时（如 POSIX 上的 / 与 Windows 上的 \ 或 /），它们会被单个的路径分隔符（POSIX 上是 /，Windows 上是 \）替换。 末尾的多个分隔符会被保留。<br>如果 path 是一个长度为零的字符串，则返回 &#39;.&#39;，表示当前工作目录。</p>
+<p>语法： <code>path.normalize(path)</code></p>
+<ul>
+<li>path <string>  要进行规范的路径字符串</li>
+<li>返回: <string>  规范后的路径字符串</li>
+</ul>
+<pre><code class="lang-js">path.normalize(&#39;/foo/bar//baz/asdf/quux/..&#39;);
+// 返回: &#39;/foo/bar/baz/asdf
+
+// windows 上
+path.normalize(&#39;C:\\temp\\\\foo\\bar\\..\\&#39;);
+// 返回: &#39;C:\\temp\\foo\\&#39;
+</code></pre>
+<h2 id="-">平台兼容的分隔符</h2>
+<h3 id="-">路径片段分隔符：</h3>
+<p>Windows 上是 <code>\</code>
+POSIX 上是 <code>/</code></p>
+<p>为了兼容不同平台，node提供了一个path的辅助属性<code>path.sep</code>来兼容不同平台下的路径片段分隔符。</p>
+<pre><code class="lang-js">console.log(path.sep);  // POSIX: /     windows:  \
+
+// 在 POSIX 上：
+&#39;foo/bar/baz&#39;.split(path.sep);
+// 返回: [&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]
+
+//在 Windows 上：
+&#39;foo\\bar\\baz&#39;.split(path.sep);
+// 返回: [&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]
+</code></pre>
+<h3 id="-">路径分隔符</h3>
+<p>平台路径分隔符是不同的：
+<code>Windows</code> 上是 <code>;</code>
+<code>POSIX</code> 上是 <code>:</code></p>
+<p>node也做了兼容处理，提供了<code>path.delimiter</code>来实现平台兼容。</p>
+<p>例如，我们常见的path环境变量上做分割处理：</p>
+<pre><code class="lang-js">//在 POSIX 上：
+console.log(process.env.PATH);
+// 输出: &#39;/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin&#39;
+process.env.PATH.split(path.delimiter);
+// 返回: [&#39;/usr/bin&#39;, &#39;/bin&#39;, &#39;/usr/sbin&#39;, &#39;/sbin&#39;, &#39;/usr/local/bin&#39;]
+
+//在 Windows 上：
+console.log(process.env.PATH);
+// 输出: &#39;C:\Windows\system32;C:\Windows;C:\Program Files\node\&#39;
+process.env.PATH.split(path.delimiter);
+// 返回: [&#39;C:\\Windows\\system32&#39;, &#39;C:\\Windows&#39;, &#39;C:\\Program Files\\node\\&#39;]
+</code></pre>
+<h2 id="-">判断是否是绝对路径</h2>
+<p><code>path.isAbsolute(path)</code>此方法接受一个字符串，返回boolean类型。</p>
+<pre><code class="lang-js">// POSIX
+path.isAbsolute(&#39;/foo/bar&#39;); // true
+path.isAbsolute(&#39;qux/&#39;);     // false
+// Windows
+path.isAbsolute(&#39;C:\\foo\\..&#39;); // true
+path.isAbsolute(&#39;bar\\baz&#39;);    // false
+</code></pre>
+<h2 id="-">总结</h2>
+<p>node的path模块使用非常简单，而且老马简单看了一下node的源码，写的非常精彩，对于多种情况的处理都很恰到好处，推荐大家看node的path模块源码： <a href="https://github.com/nodejs/node/blob/master/lib/path.js">/lib/path.js</a>。</p>
+<hr>
+<p><a href="https://qtxh.ke.qq.com">老马免费视频教程</a></p>
+<p><a href="../readme.md">返回首页</a></p>
+
+			</article>
+		</div>
+	</div>
+</body>
+
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript">
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
