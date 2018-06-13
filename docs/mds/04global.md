@@ -155,13 +155,13 @@ console.timeEnd('lb1');
 
 5. 其他方法
 
-说明|实例
----|---
-打印堆栈跟踪在代码 | `console.trace([message][, ...args])`
-计数器的显示标签|`console.count([label])` 
-重置指定 label 的内部计数器。|`console.countReset([label='default'])`
-清空控制台| `console.clear()`
-断言|`console.assert(value[, message][, ...args])`
+| 说明                 | 实例                                            |
+|--------------------|-----------------------------------------------|
+| 打印堆栈跟踪在代码          | `console.trace([message][, ...args])`         |
+| 计数器的显示标签           | `console.count([label])`                      |
+| 重置指定 label 的内部计数器。 | `console.countReset([label='default'])`       |
+| 清空控制台              | `console.clear()`                             |
+| 断言                 | `console.assert(value[, message][, ...args])` |
 
 
 console的方法还比较多，这里就不一一列举了，有兴趣的可以直接参考[中文文档](http://nodejs.cn/api/console.html)
@@ -224,4 +224,4 @@ clearTimeout(timer);
 
 [老马免费视频教程](https://qtxh.ke.qq.com)   
 
-[返回首页](../readme.md)
+[返回首页](https://malun666.github.io/aicoder_node/#/)

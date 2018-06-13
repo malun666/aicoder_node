@@ -4,11 +4,11 @@
 
 ## 安装方式
 
-* windows 下安装
+- windows 下安装
 
 建议直接选择：`Windows Installer (.msi)`下载进行傻瓜化安装，由于网络环境及 Windows 的特点，其他方式都不够稳定，建议直接下载最新版本的安装包直接安装。
 
-* mac 下安装
+- mac 下安装
 
 第一种：直接下载 pkg 文件安装，跟 windows 一致。不再赘述。
 
@@ -18,7 +18,7 @@
 $ brew install node
 ```
 
-* linux 下安装
+- linux 下安装
 
 参考官方各种系统下的安装方式：https://nodejs.org/en/download/package-manager/
 
@@ -39,6 +39,7 @@ $ npm -v
 ```
 
 ---
+
 参考：
 https://nodejs.org/en/download/package-manager/
 https://nodejs.org/
@@ -47,4 +48,4 @@ https://nodejs.org/
 
 [老马免费视频教程](https://qtxh.ke.qq.com)
 
-[返回首页](../readme.md)
+[返回首页](https://malun666.github.io/aicoder_node/#/)
