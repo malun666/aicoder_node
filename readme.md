@@ -1,5 +1,7 @@
 # aicoder.com 全栈实习之简明 Node 入门文档
 
+本教程更好的阅读体验请直接打开地址：[https://malun666.github.io/aicoder_node/#/](https://malun666.github.io/aicoder_node/#/)
+
 [aicoder.com](http://aicoder.com) 线下实习： 不 8000 就业，不还实习费。
 
 在线视频地址：
