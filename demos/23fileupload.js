@@ -31,29 +31,6 @@ app.post('/upload', upload.single('fa'), (req, res) => {
   });
 });
 
-// 需要异常处理的文件上传代码
-// app.post('/upload', (req, res) => {
-//   let loader = upload.single('fa');
-//   loader(req, res, function (err) {
-//     if (err) {
-//       console.log(err);
-//       res.send({
-//         status: 0,
-//         msg: err
-//       });
-//       res.end();
-//       return;
-//     }
-
-//     console.log(req.file.path);
-//     // 没有异常信息
-//     res.send({
-//       status: 1,
-//       msg: 'ok'
-//     });
-//   });
-// });
-
 app.listen(59988, () => {
   console.log('http://127.0.0.1:59988')
 })
